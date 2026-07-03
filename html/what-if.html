@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PICKS What-if Architecture</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="page-header">
+      <div class="brand-lockup">
+        <div class="logo-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div>
+          <p class="eyebrow">PICKS Architecture</p>
+          <h1>What-if Data Flow</h1>
+          <p class="subtitle">Compare how the integration changes with Workday, MuleSoft/Boomi/API, and MES alternatives.</p>
+        </div>
+      </div>
+      <nav class="page-nav" aria-label="Architecture views">
+        <a class="nav-link" href="../index.html">Home</a>
+        <a class="nav-link" href="baseline.html">Baseline</a>
+        <a class="nav-link" href="trade-study.html">Trade Study</a>
+        <a class="nav-link active" href="what-if.html">What-if</a>
+        <a class="nav-link" href="system-design.html">System Design</a>
+      </nav>
+    </header>
+
+    <main class="whatif-layout">
+      <section class="scenario-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Scenario Builder</p>
+            <h2>Architecture Variables</h2>
+          </div>
+        </div>
+        <div class="scenario-controls">
+          <label>
+            <span>Enterprise source</span>
+            <select id="enterpriseSelect">
+              <option value="workday">Workday primary</option>
+              <option value="oracle">Oracle primary</option>
+            </select>
+          </label>
+          <label>
+            <span>Integration layer</span>
+            <select id="integrationSelect">
+              <option value="mulesoft">MuleSoft</option>
+              <option value="boomi">Boomi</option>
+              <option value="api">Custom API Gateway</option>
+            </select>
+          </label>
+          <label>
+            <span>MES option</span>
+            <select id="mesSelect">
+              <option value="opensource">Open-source MES</option>
+              <option value="tulip">Tulip</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="scenario-summary" id="scenarioSummary" aria-live="polite"></section>
+
+      <section class="diagram-panel whatif-diagram-panel" aria-label="What-if architecture diagram">
+        <div class="diagram-toolbar">
+          <div class="filter-control">
+            <label class="select-label" for="scenarioStepSelect">Focus step</label>
+            <select id="scenarioStepSelect"></select>
+          </div>
+          <div class="toolbar-actions">
+            <button class="control-button" type="button" id="whatifPlayPause">Pause</button>
+            <button class="control-button" type="button" id="whatifReplay">Replay</button>
+          </div>
+          <div class="legend" id="whatifLegend" aria-label="What-if color legend"></div>
+        </div>
+        <svg id="whatifDiagram" class="sequence-diagram" viewBox="0 0 1780 820" role="img" aria-labelledby="whatifTitle">
+          <title id="whatifTitle">PICKS what-if integration data flow</title>
+          <defs>
+            <marker id="whatifArrowHead" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-fill"></path>
+            </marker>
+          </defs>
+          <g id="whatifParticipants"></g>
+          <g id="whatifMessages"></g>
+          <g id="whatifPacket"></g>
+        </svg>
+      </section>
+
+      <section class="timeline-panel whatif-flow-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Flow Impact</p>
+            <h2>How the Diagram Changes</h2>
+          </div>
+        </div>
+        <div class="impact-grid" id="impactGrid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../js/whatif.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PICKS System Design</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="page-header">
+      <div class="brand-lockup">
+        <div class="logo-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div>
+          <p class="eyebrow">PICKS Architecture</p>
+          <h1>System Design</h1>
+          <p class="subtitle">Clean BDD view of the major systems, subsystems, and enterprise interfaces.</p>
+        </div>
+      </div>
+      <nav class="page-nav" aria-label="Architecture views">
+        <a class="nav-link" href="../index.html">Home</a>
+        <a class="nav-link" href="baseline.html">Baseline</a>
+        <a class="nav-link" href="trade-study.html">Trade Study</a>
+        <a class="nav-link" href="what-if.html">What-if</a>
+        <a class="nav-link active" href="system-design.html">System Design</a>
+      </nav>
+    </header>
+
+    <main class="clean-bdd-layout">
+      <section class="clean-bdd-panel" aria-label="PICKS clean block definition diagram">
+        <div class="clean-bdd-header">
+          <div>
+            <p class="eyebrow">bdd [Package] Architecture</p>
+            <h2>PICKS System Architecture</h2>
+          </div>
+          <div class="clean-bdd-legend" aria-label="Diagram legend">
+            <span><i class="legend-cream"></i>PICKS</span>
+            <span><i class="legend-yellow"></i>Governance</span>
+            <span><i class="legend-green"></i>Lab / MES</span>
+            <span><i class="legend-cyan"></i>Logistics</span>
+            <span><i class="legend-purple"></i>Program Management</span>
+            <span><i class="legend-red"></i>External Systems</span>
+          </div>
+        </div>
+
+        <div class="clean-bdd-diagram">
+          <svg class="bdd-connectors" viewBox="0 0 1200 520" aria-hidden="true">
+            <path d="M600 96 L600 150" class="bdd-line"></path>
+            <path d="M600 150 L210 150 L210 218" class="bdd-line"></path>
+            <path d="M600 150 L470 150 L470 218" class="bdd-line"></path>
+            <path d="M600 150 L730 150 L730 218" class="bdd-line"></path>
+            <path d="M600 150 L990 150 L990 218" class="bdd-line"></path>
+            <path d="M990 305 L1110 305" class="bdd-line relationship"></path>
+          </svg>
+
+          <article class="clean-block picks-block">
+            <span>&lt;&lt;block&gt;&gt;</span>
+            <h3>PICKS</h3>
+            <p>Integrated platform for inventory visibility, traceability, workflow support, governance, and external system exchange.</p>
+          </article>
+
+          <button class="clean-block governance-block system-trigger active" type="button" data-system="governance">
+            <span>&lt;&lt;system&gt;&gt;</span>
+            <h3>Governance System</h3>
+            <p>Defines user permissions, security controls, compliance evidence, audit history, and configurable policy rules.</p>
+          </button>
+
+          <button class="clean-block lab-block system-trigger" type="button" data-system="lab">
+            <span>&lt;&lt;system&gt;&gt;</span>
+            <h3>Lab / MES System</h3>
+            <p>Supports build execution, work orders, component consumption, asset status, and lab traceability.</p>
+          </button>
+
+          <button class="clean-block logistics-block system-trigger" type="button" data-system="logistics">
+            <span>&lt;&lt;system&gt;&gt;</span>
+            <h3>Logistics System</h3>
+            <p>Manages receiving, inventory updates, warehouse location, and material movement across projects.</p>
+          </button>
+
+          <button class="clean-block program-block system-trigger" type="button" data-system="program">
+            <span>&lt;&lt;system&gt;&gt;</span>
+            <h3>Program Management</h3>
+            <p>Maintains product configuration, material planning, forecast needs, and program-level visibility.</p>
+          </button>
+
+          <section class="clean-external">
+            <h3>External Systems</h3>
+            <article class="external-chip">Workday</article>
+            <article class="external-chip">Oracle ERP</article>
+            <article class="external-chip">PEDYN / Legacy Lab Tools</article>
+          </section>
+        </div>
+      </section>
+
+      <section class="subsystem-panel" id="subsystemPanel" aria-live="polite"></section>
+
+      <section class="clean-bdd-notes">
+        <article>
+          <strong>Design Intent</strong>
+          <p>Keep PICKs modular so GTRI can evolve ERP, MES, and legacy integrations without replacing the whole architecture.</p>
+        </article>
+        <article>
+          <strong>Primary Data Thread</strong>
+          <p>Request or PO data enters through enterprise systems, is governed by RBAC, updates logistics records, supports lab execution, and creates traceable audit evidence.</p>
+        </article>
+        <article>
+          <strong>Quality Attributes</strong>
+          <p>Security, traceability, availability, performance, and adaptability drive the system boundaries and interface choices.</p>
+        </article>
+      </section>
+    </main>
+  </div>
+  <script src="../js/system-design.js"></script>
+</body>
+</html>

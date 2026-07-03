@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PICKS Trade Study</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="page-header">
+      <div class="brand-lockup">
+        <div class="logo-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div>
+          <p class="eyebrow">PICKS Architecture</p>
+          <h1>Trade Study</h1>
+          <p class="subtitle">Interactive comparison of ERP, MES, and integration-layer options.</p>
+        </div>
+      </div>
+      <nav class="page-nav" aria-label="Architecture views">
+        <a class="nav-link" href="../index.html">Home</a>
+        <a class="nav-link" href="baseline.html">Baseline</a>
+        <a class="nav-link active" href="trade-study.html">Trade Study</a>
+        <a class="nav-link" href="what-if.html">What-if</a>
+        <a class="nav-link" href="system-design.html">System Design</a>
+      </nav>
+    </header>
+
+    <main class="trade-layout">
+      <section class="trade-hero">
+        <div>
+          <p class="eyebrow">Decision Support</p>
+          <h2>Implementation Trade Space</h2>
+          <p>Select a trade study, change the priority, and compare candidates using normalized scores from the capstone trade-space criteria.</p>
+        </div>
+        <div class="trade-summary">
+          <span>ERP</span>
+          <span>MES</span>
+          <span>Integration Layer</span>
+        </div>
+      </section>
+
+      <section class="trade-dashboard">
+        <div class="trade-controls">
+          <label>
+            <span>Trade study</span>
+            <select id="tradeCategory"></select>
+          </label>
+          <label>
+            <span>Priority lens</span>
+            <select id="tradePriority"></select>
+          </label>
+        </div>
+        <div class="trade-winner" id="tradeWinner" aria-live="polite"></div>
+      </section>
+
+      <section class="trade-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" id="tradeEyebrow"></p>
+            <h2 id="tradeTitle"></h2>
+          </div>
+          <span class="recommendation" id="tradeRecommendation"></span>
+        </div>
+        <div class="dynamic-table-wrap" id="tradeTable"></div>
+      </section>
+
+      <section class="trade-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Candidate Details</p>
+            <h2>Option Profiles</h2>
+          </div>
+        </div>
+        <div class="dynamic-option-grid" id="tradeProfiles"></div>
+      </section>
+
+      <section class="clean-bdd-notes">
+        <article>
+          <strong>Recommended Framing</strong>
+          <p>Keep the architecture modular so ERP, MES, and integration-layer choices can change without redesigning the entire PICKS concept.</p>
+        </article>
+        <article>
+          <strong>MVP Bias</strong>
+          <p>Favor options that support inventory visibility, traceability, RBAC, and audit logging with the least disruption to existing lab workflows.</p>
+        </article>
+        <article>
+          <strong>Future Decision Point</strong>
+          <p>Final selection should follow USG ERP direction, lab rollout needs, CMMC/security constraints, and available sustainment resources.</p>
+        </article>
+      </section>
+    </main>
+  </div>
+  <script src="../js/trade-study.js"></script>
+</body>
+</html>
