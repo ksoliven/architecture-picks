@@ -3,7 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PICKS Integration Data Flow</title>
+  <title>PICKS Information Flow</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/picks-favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="../assets/picks-favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -16,37 +20,41 @@
           <span></span>
         </div>
         <div>
-          <p class="eyebrow">PICKS Architecture</p>
-          <h1>PICKS Data Flow</h1>
-          <p class="subtitle">Enterprise integration from access control to ERP, legacy systems, and future MES.</p>
+          <p class="eyebrow">PICKS Presentation</p>
+          <h1>PICKS Information Flow</h1>
+          <p class="subtitle">How a request is checked, enriched with ERP and Workday data, connected to lab history, updated in MES, and recorded.</p>
         </div>
       </div>
       <nav class="page-nav" aria-label="Architecture views">
-        <a class="nav-link" href="../index.html">Home</a>
-        <a class="nav-link active" href="baseline.html">Baseline</a>
-        <a class="nav-link" href="trade-study.html">Trade Study</a>
-        <a class="nav-link" href="what-if.html">What-if</a>
-        <a class="nav-link" href="system-design.html">System Design</a>
+        <a class="nav-link" href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i>Home</a>
+        <a class="nav-link active" href="baseline.html"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>Current Flow</a>
+        <a class="nav-link" href="trade-study.html"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>Compare Options</a>
+        <a class="nav-link" href="what-if.html"><i class="fa-solid fa-code-branch" aria-hidden="true"></i>What-if</a>
+        <a class="nav-link" href="system-design.html"><i class="fa-solid fa-cubes" aria-hidden="true"></i>System Layout</a>
+        <a class="nav-link" href="data-payloads.html"><i class="fa-solid fa-database" aria-hidden="true"></i>Information Examples</a>
+        <a class="nav-link" href="test-cases.html"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>Test Cases</a>
+        <a class="nav-link" href="final-materials.html"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Final Materials</a>
+        <a class="nav-link" href="acronyms.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Acronyms</a>
       </nav>
     </header>
 
     <main class="layout">
-      <section class="diagram-panel" aria-label="Animated sequence diagram">
+      <section class="diagram-panel" aria-label="Animated sequence diagram" data-aos="fade-up">
         <div class="diagram-toolbar">
           <div class="filter-control">
-            <label class="select-label" for="requirementFilter">Requirement focus</label>
+            <label class="select-label" for="requirementFilter">Focus area</label>
             <select id="requirementFilter">
-              <option value="all">All requirements</option>
+              <option value="all">All focus areas</option>
             </select>
           </div>
           <div class="toolbar-actions">
-            <button class="control-button" type="button" id="playPause">Pause</button>
-            <button class="control-button" type="button" id="replay">Replay</button>
+            <button class="control-button" type="button" id="playPause"><i class="fa-solid fa-pause" aria-hidden="true"></i>Pause</button>
+            <button class="control-button" type="button" id="replay"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i>Replay</button>
           </div>
           <div class="legend" id="legend" aria-label="Diagram color legend"></div>
         </div>
         <svg id="sequenceDiagram" class="sequence-diagram" viewBox="0 0 1780 860" role="img" aria-labelledby="diagramTitle">
-          <title id="diagramTitle">PICKS integration data flow sequence diagram</title>
+          <title id="diagramTitle">PICKS information flow diagram</title>
           <defs>
             <marker id="arrowHead" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
               <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-fill"></path>
@@ -58,34 +66,34 @@
         </svg>
       </section>
 
-      <aside class="details-panel" aria-live="polite">
-        <p class="eyebrow">Active Data Movement</p>
+      <aside class="details-panel" aria-live="polite" data-aos="fade-left">
+        <p class="eyebrow">Current Step</p>
         <h2 id="stepTitle"></h2>
         <p id="stepDescription"></p>
 
         <div class="detail-block">
-          <h3>Data Payload</h3>
+          <h3>Information Included</h3>
           <div class="pill-row" id="payloadList"></div>
         </div>
 
         <div class="detail-block">
-          <h3>Requirement Tie</h3>
+          <h3>Why This Matters</h3>
           <div class="requirement-list" id="requirementList"></div>
         </div>
       </aside>
 
-      <section class="timeline-panel">
+      <section class="timeline-panel" data-aos="fade-up">
         <div class="section-heading">
           <p class="eyebrow">Flow Order</p>
-          <h2>Message Sequence</h2>
+          <h2>Step-by-Step Movement</h2>
         </div>
         <div class="timeline" id="timeline"></div>
       </section>
 
-      <section class="trace-panel">
+      <section class="trace-panel" data-aos="fade-up">
         <div class="section-heading">
-          <p class="eyebrow">Traceability</p>
-          <h2>Requirements Covered by the Architecture</h2>
+          <p class="eyebrow">Coverage</p>
+          <h2>Business Needs Covered</h2>
         </div>
         <div class="trace-grid" id="traceGrid"></div>
       </section>
@@ -93,6 +101,8 @@
   </div>
 
   <script src="../js/app.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/ui.js"></script>
 
 </body>
 </html>

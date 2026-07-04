@@ -1,147 +1,147 @@
 const architecture = {
   participants: [
     { id: "user", name: "User", color: "#d946ef", role: "Requester" },
-    { id: "rbac", name: "RBAC / Policies", color: "#14b8a6", role: "Governance" },
-    { id: "integration", name: "Integration Layer", color: "#f97316", role: "Orchestration" },
-    { id: "oracle", name: "Oracle ERP", color: "#06b6d4", role: "Procurement" },
+    { id: "rbac", name: "Access Rules", color: "#14b8a6", role: "Approves actions" },
+    { id: "integration", name: "Integration Layer", color: "#f97316", role: "Routes information" },
+    { id: "oracle", name: "Oracle ERP", color: "#06b6d4", role: "Purchasing" },
     { id: "workday", name: "Workday", color: "#22c55e", role: "Finance" },
-    { id: "pedyn", name: "PEDYN Legacy", color: "#8b5cf6", role: "Lab records" },
-    { id: "mes", name: "Potential MES Candidate", color: "#ef4444", role: "Future MES" }
+    { id: "pedyn", name: "PEDYN Lab History", color: "#8b5cf6", role: "Older lab records" },
+    { id: "mes", name: "Future MES Candidate", color: "#ef4444", role: "Lab execution" }
   ],
   requirements: [
-    { id: "SYS-6.1", title: "Enterprise data exchange", description: "System shall exchange data with enterprise systems to support workflow automation, traceability, and inventory visibility." },
-    { id: "SYS-6.2", title: "ERP retrieval", description: "System shall interface with an ERP to retrieve inventory, asset, and procurement information." },
-    { id: "SYS-6.3", title: "Inventory synchronization", description: "System shall synchronize inventory availability and asset status with approved enterprise systems." },
-    { id: "SYS-6.4", title: "Fallback operation", description: "System shall continue workflow execution when enterprise systems are temporarily unavailable." },
-    { id: "SYS-6.5", title: "Protected exchange", description: "System shall protect data exchanged with enterprise systems." },
-    { id: "SYS-7.1", title: "In-system guidance", description: "System shall provide user guidance such as help notes or tooltips during operation." },
-    { id: "3.4.1", title: "Access control", description: "Role-based access validation and permission checks prevent unauthorized record changes." },
-    { id: "5.6.2.1", title: "Audit subsystem", description: "Integration activity is logged to support traceability, auditing, and compliance evidence." },
-    { id: "5.2.1", title: "Data retrieval", description: "External source data can be retrieved and used by downstream workflows." },
-    { id: "5.3.1.1", title: "Field mapping", description: "Source fields are mapped into usable target fields for the integration layer or MES." },
-    { id: "5.4.1.1", title: "Receiving interface", description: "Receiving workflows use mapped interface data for downstream inventory updates." },
-    { id: "3.3.4", title: "Component traceability", description: "Component, part, and project records remain traceable across source systems." }
+    { id: "SYS-6.1", title: "Share information across systems", description: "PICKS needs to move useful information between ERP, Workday, inventory, and lab systems." },
+    { id: "SYS-6.2", title: "Find purchasing and inventory data", description: "PICKS needs to pull part, asset, purchasing, and inventory information from the ERP." },
+    { id: "SYS-6.3", title: "Keep inventory status aligned", description: "PICKS needs connected systems to agree on item availability and asset status." },
+    { id: "SYS-6.4", title: "Keep working during outages", description: "PICKS should continue the work process when another system is temporarily unavailable." },
+    { id: "SYS-6.5", title: "Protect shared information", description: "PICKS must protect information as it moves between people and systems." },
+    { id: "SYS-7.1", title: "Guide the user", description: "PICKS should help users understand what to do during the work process." },
+    { id: "3.4.1", title: "Check permission first", description: "PICKS should prevent users from making changes they are not allowed to make." },
+    { id: "5.6.2.1", title: "Keep an activity record", description: "PICKS should record important activity for review, troubleshooting, and compliance evidence." },
+    { id: "5.2.1", title: "Bring in outside data", description: "PICKS should be able to use information from connected systems." },
+    { id: "5.3.1.1", title: "Translate data between systems", description: "PICKS should turn outside data into a format the receiving system can use." },
+    { id: "5.4.1.1", title: "Support receiving work", description: "PICKS should use connected information to support receiving and inventory updates." },
+    { id: "3.3.4", title: "Keep part history connected", description: "PICKS should keep part, project, and lab history connected across systems." }
   ],
   messages: [
     {
       id: "request-action",
       from: "user",
       to: "rbac",
-      label: "Request Action",
+      label: "Ask to Take Action",
       direction: "request",
       payload: ["User identity", "Requested action", "Target system"],
       requirements: ["3.4.1", "SYS-6.5"],
-      description: "The user initiates an action that must be checked before any enterprise or lab data is accessed."
+      description: "A user starts a task, and PICKS checks the action before ERP, Workday, or lab information is accessed."
     },
     {
       id: "authorization-granted",
       from: "rbac",
       to: "user",
-      label: "Authorization Granted",
+      label: "Approve or Block Action",
       direction: "response",
-      payload: ["Role match", "Allowed permission", "Session decision"],
+      payload: ["User role", "Allowed action", "Decision"],
       requirements: ["3.4.1", "5.6.2.1"],
-      description: "RBAC and policy checks return an allow or block decision and create an auditable access event."
+      description: "PICKS returns a clear yes or no decision and keeps that decision for later review."
     },
     {
       id: "submit-request",
       from: "user",
       to: "integration",
-      label: "Submit Request",
+      label: "Send Approved Request",
       direction: "request",
-      payload: ["Approved request", "Part number", "BOM or workflow context"],
+      payload: ["Approved request", "Part number", "Build or work context"],
       requirements: ["SYS-6.1", "SYS-7.1"],
-      description: "The approved user request enters the integration layer for routing, data mapping, and downstream coordination."
+      description: "The approved request goes to the integration layer so PICKS can gather the right supporting information."
     },
     {
       id: "request-erp-data",
       from: "integration",
       to: "oracle",
-      label: "Request ERP Data",
+      label: "Ask for Purchasing Data",
       direction: "request",
-      payload: ["Procurement lookup", "Inventory lookup", "Asset identifier"],
+      payload: ["Purchasing lookup", "Inventory lookup", "Asset identifier"],
       requirements: ["SYS-6.1", "SYS-6.2", "5.2.1"],
-      description: "The integration layer asks Oracle ERP for procurement, inventory, and asset data needed by PICKS."
+      description: "The integration layer asks Oracle ERP for purchasing, inventory, and asset information."
     },
     {
       id: "erp-data",
       from: "oracle",
       to: "integration",
-      label: "Procurement and Inventory Data",
+      label: "Return Purchasing Data",
       direction: "response",
       payload: ["Purchase order", "Vendor", "Part number", "Quantity", "Inventory status"],
       requirements: ["SYS-6.2", "5.2.1", "5.3.1.1"],
-      description: "Oracle returns structured procurement and inventory data that can be mapped for PICKS workflows."
+      description: "Oracle returns purchasing and inventory details that PICKS can use in the work process."
     },
     {
       id: "request-financial-data",
       from: "integration",
       to: "workday",
-      label: "Request Financial Data",
+      label: "Ask for Funding Data",
       direction: "request",
       payload: ["Project account", "Cost object", "Funding reference"],
       requirements: ["SYS-6.1", "5.2.1"],
-      description: "The integration layer requests financial context from Workday to support planning and downstream visibility."
+      description: "The integration layer asks Workday for project and funding context."
     },
     {
       id: "financial-data",
       from: "workday",
       to: "integration",
-      label: "Financial Data",
+      label: "Return Funding Data",
       direction: "response",
       payload: ["Funding status", "Financial reference", "Project cost data"],
       requirements: ["SYS-6.1", "5.2.1", "5.3.1.1"],
-      description: "Workday returns financial data used to enrich the transaction and keep enterprise records aligned."
+      description: "Workday returns funding information so the request has the right business context."
     },
     {
       id: "request-legacy-data",
       from: "integration",
       to: "pedyn",
-      label: "Request Legacy Data",
+      label: "Ask for Existing Lab Data",
       direction: "request",
       payload: ["Part number", "Build identifier", "Lab record lookup"],
       requirements: ["SYS-6.1", "3.3.4", "5.2.1"],
-      description: "The integration layer requests historical lab execution records from PEDYN."
+      description: "The integration layer asks PEDYN for older lab records that may still matter."
     },
     {
       id: "legacy-data",
       from: "pedyn",
       to: "integration",
-      label: "Existing Lab Data",
+      label: "Return Existing Lab Data",
       direction: "response",
-      payload: ["Legacy part record", "Build history", "Lab status"],
+      payload: ["Older part record", "Build history", "Lab status"],
       requirements: ["3.3.4", "5.2.1", "5.3.1.1"],
-      description: "PEDYN returns existing laboratory data so PICKS can preserve traceability across legacy records."
+      description: "PEDYN returns existing lab history so PICKS can keep older records connected."
     },
     {
       id: "create-update-record",
       from: "integration",
       to: "mes",
-      label: "Create or Update Record",
+      label: "Create or Update Lab Record",
       direction: "request",
-      payload: ["Mapped item record", "Inventory update", "Operation status", "Trace link"],
+      payload: ["Item record", "Inventory update", "Work status", "History link"],
       requirements: ["SYS-6.3", "5.4.1.1", "3.3.4"],
-      description: "The integration layer creates or updates a record in the future MES candidate using mapped ERP, Workday, and PEDYN data."
+      description: "The integration layer creates or updates a MES lab record using the information gathered from other systems."
     },
     {
       id: "status-confirmation",
       from: "mes",
       to: "integration",
-      label: "Status Confirmation",
+      label: "Confirm Update Status",
       direction: "response",
-      payload: ["Update result", "MES record ID", "Synchronization status"],
+      payload: ["Update result", "MES record ID", "Sharing status"],
       requirements: ["SYS-6.3", "SYS-6.4", "5.6.2.1"],
-      description: "The MES candidate confirms whether the record was created or updated, including failure state if synchronization cannot complete."
+      description: "The future MES candidate confirms whether the record was created or updated."
     },
     {
       id: "log-activity",
       from: "integration",
       to: "rbac",
-      label: "Log Activity",
+      label: "Record What Happened",
       direction: "request",
       payload: ["Transaction ID", "User", "Systems touched", "Timestamp", "Decision outcome"],
       requirements: ["5.6.2.1", "SYS-6.5"],
-      description: "The integration layer logs the completed activity through governance controls for auditability and compliance."
+      description: "PICKS records what happened, who was involved, and which systems were touched."
     }
   ]
 };
@@ -332,12 +332,12 @@ function renderMessages() {
     });
     const text = makeSvg("text", {
       x: (startX + endX) / 2,
-      y: y - 12,
+      y: y + 20,
       "text-anchor": "middle",
       class: "message-label"
     });
     const labelLines = splitLabel(message.label, 24);
-    appendMessageLabel(text, labelLines, (startX + endX) / 2, y - (labelLines.length > 1 ? 24 : 12), 17);
+    appendMessageLabel(text, labelLines, (startX + endX) / 2, y + (labelLines.length > 1 ? 18 : 20), 15);
     group.addEventListener("click", () => {
       state.activeIndex = index;
       state.playing = false;
@@ -381,7 +381,13 @@ function renderDetails() {
   payloadList.innerHTML = message.payload.map((item) => `<span class="pill">${item}</span>`).join("");
   requirementList.innerHTML = message.requirements.map((id) => {
     const requirement = requirementById[id];
-    return `<article class="requirement-card"><strong>${id}: ${requirement.title}</strong><p>${requirement.description}</p></article>`;
+    return `
+      <article class="requirement-card">
+        <span class="requirement-id">${id}</span>
+        <strong>${requirement.title}</strong>
+        <p>${requirement.description}</p>
+      </article>
+    `;
   }).join("");
 }
 
@@ -391,7 +397,9 @@ function renderTimeline() {
     const active = index === state.activeIndex % messages.length;
     const from = participantById[message.from].name;
     const to = participantById[message.to].name;
-    const requirements = message.requirements.map((id) => `<span>${id}</span>`).join("");
+    const requirements = message.requirements
+      .map((id) => `<span title="${requirementById[id].title}">${id}</span>`)
+      .join("");
     return `
       <button class="timeline-item ${active ? "active" : ""}" type="button" data-index="${index}">
         <span class="step-number">${String(index + 1).padStart(2, "0")}</span>
@@ -412,7 +420,7 @@ function renderTraceGrid() {
       .map((message) => message.label);
     return `
       <article class="trace-card">
-        <strong>${requirement.id}</strong>
+        <span class="requirement-id">${requirement.id}</span>
         <h3>${requirement.title}</h3>
         <p>${requirement.description}</p>
         <div class="mini-pills">${related.map((label) => `<span>${label}</span>`).join("")}</div>
@@ -457,7 +465,9 @@ function render() {
   const messages = matchingMessages();
   state.activeIndex = Math.min(state.activeIndex, Math.max(0, messages.length - 1));
   svg.classList.toggle("paused", !state.playing);
-  playPause.textContent = state.playing ? "Pause" : "Play";
+  playPause.innerHTML = state.playing
+    ? '<i class="fa-solid fa-pause" aria-hidden="true"></i>Pause'
+    : '<i class="fa-solid fa-play" aria-hidden="true"></i>Play';
   renderMessages();
   renderPacket();
   renderDetails();

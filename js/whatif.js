@@ -2,59 +2,66 @@ const scenarioOptions = {
   enterprise: {
     workday: {
       name: "Workday",
-      role: "Primary ERP source",
+      icon: "fa-coins",
+      role: "ERP source",
       color: "#22c55e",
-      data: ["procurement status", "financial data", "inventory availability"],
-      implication: "Workday becomes the main enterprise source, so Oracle-specific procurement calls are removed from the critical path."
+      data: ["purchasing status", "financial data", "inventory availability"],
+      implication: "Workday becomes the main ERP source, so fewer separate Oracle purchasing calls are needed."
     },
     oracle: {
       name: "Oracle ERP",
-      role: "Primary ERP source",
+      icon: "fa-building-columns",
+      role: "ERP source",
       color: "#06b6d4",
       data: ["purchase orders", "vendor data", "inventory records"],
-      implication: "Oracle remains the procurement and inventory source, with Workday limited to financial context."
+      implication: "Oracle remains the main source for purchasing and inventory, while Workday provides funding context."
     }
   },
   integration: {
     mulesoft: {
       name: "MuleSoft",
+      icon: "fa-network-wired",
       role: "Managed iPaaS",
       color: "#f97316",
-      strength: "Best fit when enterprise-grade API management, reusable connectors, and governance are the priority."
+      strength: "Best fit when PICKS needs strong oversight, reusable connections, and long-term management."
     },
     boomi: {
       name: "Boomi",
+      icon: "fa-bolt",
       role: "Low-code iPaaS",
       color: "#f59e0b",
-      strength: "Best fit when quick mapping, lower-code integration, and faster workflow prototyping are the priority."
+      strength: "Best fit when the team needs to connect systems quickly with less custom coding."
     },
     api: {
       name: "Custom API Gateway",
+      icon: "fa-code",
       role: "PICKS-owned API",
       color: "#334155",
-      strength: "Best fit when PICKS needs maximum control, but the team accepts more development and sustainment burden."
+      strength: "Best fit when PICKS needs maximum control and the team can handle more build and upkeep work."
     }
   },
   mes: {
     opensource: {
       name: "Open-source MES",
+      icon: "fa-industry",
       role: "InvenTree / Odoo style",
       color: "#0f766e",
-      implication: "Lower cost and more flexibility, but more customization is needed for RBAC, mappings, and long-term support."
+      implication: "Lower cost and more flexibility, but more setup work is needed for permissions, data matching, and support."
     },
     tulip: {
       name: "Tulip",
+      icon: "fa-table-cells-large",
       role: "Commercial MES",
       color: "#ef4444",
-      implication: "Stronger operator workflow and enterprise usability, but higher cost and vendor dependency."
+      implication: "Stronger operator work processes and usability, but higher cost and more reliance on the vendor."
     }
   }
 };
 
 const baseParticipants = [
-  { id: "user", name: "User", color: "#d946ef", role: "Requester" },
-  { id: "rbac", name: "RBAC / Policies", color: "#14b8a6", role: "Governance" },
-  { id: "pedyn", name: "PEDYN Legacy", color: "#8b5cf6", role: "Lab records" }
+  { id: "user", name: "User", icon: "fa-user", color: "#d946ef", role: "Requester" },
+  { id: "rbac", name: "Access Rules", icon: "fa-shield-halved", color: "#14b8a6", role: "Approves actions" },
+  { id: "pedyn", name: "PEDYN Lab History", icon: "fa-database", color: "#8b5cf6", role: "Older lab records" }
 ];
 
 const controls = {
@@ -77,13 +84,13 @@ const layers = {
 
 const whatifDimensions = {
   top: 44,
-  bottom: 710,
+  bottom: 790,
   firstX: 130,
   gap: 292,
   boxWidth: 188,
   boxHeight: 82,
   firstMessageY: 158,
-  messageGap: 50
+  messageGap: 52
 };
 
 const whatifState = {
@@ -91,7 +98,23 @@ const whatifState = {
   startedAt: performance.now(),
   cycleMs: 12000,
   playing: true,
-  renderVersion: 0
+  renderVersion: 0,
+  animationFrameId: null
+};
+
+const requirementLabels = {
+  "SYS-6.1": "Share information across systems",
+  "SYS-6.2": "Find purchasing and inventory data",
+  "SYS-6.3": "Keep inventory status aligned",
+  "SYS-6.4": "Keep working during outages",
+  "SYS-6.5": "Protect shared information",
+  "SYS-7.1": "Guide the user",
+  "3.4.1": "Check permission first",
+  "5.6.2.1": "Keep an activity record",
+  "5.2.1": "Bring in outside data",
+  "5.3.1.1": "Translate data between systems",
+  "5.4.1.1": "Support receiving work",
+  "3.3.4": "Keep part history connected"
 };
 
 function currentScenario() {
@@ -109,10 +132,10 @@ function scenarioParticipants(scenario) {
   return [
     baseParticipants[0],
     baseParticipants[1],
-    { id: "integration", name: scenario.integration.name, color: scenario.integration.color, role: scenario.integration.role },
-    { id: "enterprise", name: scenario.enterprise.name, color: scenario.enterprise.color, role: scenario.enterprise.role },
+    { id: "integration", name: scenario.integration.name, icon: scenario.integration.icon, color: scenario.integration.color, role: scenario.integration.role },
+    { id: "enterprise", name: scenario.enterprise.name, icon: scenario.enterprise.icon, color: scenario.enterprise.color, role: scenario.enterprise.role },
     baseParticipants[2],
-    { id: "mes", name: scenario.mes.name, color: scenario.mes.color, role: scenario.mes.role }
+    { id: "mes", name: scenario.mes.name, icon: scenario.mes.icon, color: scenario.mes.color, role: scenario.mes.role }
   ].map((participant, index) => ({
     ...participant,
     x: whatifDimensions.firstX + index * whatifDimensions.gap
@@ -120,54 +143,70 @@ function scenarioParticipants(scenario) {
 }
 
 function scenarioMessages(scenario) {
-  const enterprisePayload = scenario.enterprise.data.join(", ");
+  const businessData = scenario.enterprise.data.join(", ");
   return [
     {
       from: "user",
       to: "rbac",
-      label: "Request Action",
+      label: "Ask to Take Action",
       direction: "request",
-      note: "Same as baseline: user intent is checked before data moves.",
+      note: "Same as the current flow: PICKS checks the user before information moves.",
       requirements: ["3.4.1", "SYS-6.5"]
     },
     {
       from: "rbac",
       to: "user",
-      label: "Authorization Granted",
+      label: "Approve or Block Action",
       direction: "response",
-      note: "Same as baseline: RBAC returns the access decision before the request is submitted.",
+      note: "Same as the current flow: PICKS gives a clear yes or no decision before the request continues.",
       requirements: ["3.4.1", "5.6.2.1"]
     },
     {
       from: "user",
       to: "integration",
-      label: "Submit Request",
+      label: "Send Approved Request",
       direction: "request",
-      note: `${scenario.integration.name} receives only authorized transactions.`,
+      note: `${scenario.integration.name} receives only approved requests.`,
       requirements: ["SYS-6.1", "SYS-7.1"]
     },
     {
       from: "integration",
       to: "enterprise",
-      label: "Request ERP Data",
+      label: "Ask for Business Data",
       direction: "request",
-      note: `The enterprise call now targets ${scenario.enterprise.name} for ${enterprisePayload}.`,
+      note: `The request now goes to ${scenario.enterprise.name} for ${businessData}.`,
       requirements: ["SYS-6.1", "SYS-6.2", "5.2.1"]
     },
     {
       from: "enterprise",
       to: "integration",
-      label: "Procurement and Inventory Data",
+      label: "Return Business Data",
       direction: "response",
-      note: `${scenario.enterprise.name} returns mapped enterprise records for PICKS.`,
+      note: `${scenario.enterprise.name} returns purchasing, funding, or inventory details for PICKS.`,
       requirements: ["SYS-6.2", "5.3.1.1"]
     },
     {
       from: "integration",
-      to: "pedyn",
-      label: "Request Legacy Data",
+      to: "enterprise",
+      label: "Ask for Funding Data",
       direction: "request",
-      note: "PEDYN remains in the architecture for existing lab history and traceability.",
+      note: `${scenario.integration.name} checks project and funding context.`,
+      requirements: ["SYS-6.1", "5.2.1"]
+    },
+    {
+      from: "enterprise",
+      to: "integration",
+      label: "Return Funding Data",
+      direction: "response",
+      note: `${scenario.enterprise.name} returns funding context while inventory remains managed by the appropriate system.`,
+      requirements: ["SYS-6.1", "5.2.1", "5.3.1.1"]
+    },
+    {
+      from: "integration",
+      to: "pedyn",
+      label: "Ask for Existing Lab Data",
+      direction: "request",
+      note: "PEDYN remains connected so older lab history is not lost.",
       requirements: ["3.3.4", "5.2.1"]
     },
     {
@@ -175,31 +214,31 @@ function scenarioMessages(scenario) {
       to: "integration",
       label: "Existing Lab Data",
       direction: "response",
-      note: "Legacy records are normalized before the MES update.",
+      note: "Older lab records are cleaned up before updating the future MES.",
       requirements: ["3.3.4", "5.3.1.1"]
     },
     {
       from: "integration",
       to: "mes",
-      label: "Create or Update Record",
+      label: "Create or Update Lab Record",
       direction: "request",
-      note: `${scenario.integration.name} maps enterprise and legacy fields into the ${scenario.mes.name} target model.`,
+      note: `${scenario.integration.name} prepares business and lab history so ${scenario.mes.name} can use it.`,
       requirements: ["SYS-6.3", "5.4.1.1", "3.3.4"]
     },
     {
       from: "mes",
       to: "integration",
-      label: "Status Confirmation",
+      label: "Confirm Update Status",
       direction: "response",
-      note: `${scenario.mes.name} confirms record creation, update, or synchronization failure.`,
+      note: `${scenario.mes.name} confirms whether the lab record was created or updated.`,
       requirements: ["SYS-6.3", "SYS-6.4"]
     },
     {
       from: "integration",
       to: "rbac",
-      label: "Log Activity",
+      label: "Record What Happened",
       direction: "request",
-      note: "Governance records the systems touched, user, timestamp, and result.",
+      note: "PICKS records the systems touched, user, time, and result.",
       requirements: ["5.6.2.1", "SYS-6.5"]
     }
   ];
@@ -277,7 +316,10 @@ function renderScenario() {
 
   whatifState.activeIndex = Math.min(whatifState.activeIndex, messages.length - 1);
   whatifState.renderVersion += 1;
-  controls.playPause.textContent = whatifState.playing ? "Pause" : "Play";
+  document.querySelector("#whatifDiagram").classList.toggle("paused", !whatifState.playing);
+  controls.playPause.innerHTML = whatifState.playing
+    ? '<i class="fa-solid fa-pause" aria-hidden="true"></i>Pause'
+    : '<i class="fa-solid fa-play" aria-hidden="true"></i>Play';
   renderSummary(scenario);
   renderLegend(participants);
   renderStepOptions(messages);
@@ -290,16 +332,19 @@ function renderScenario() {
 function renderSummary(scenario) {
   layers.summary.innerHTML = `
     <article class="scenario-card">
-      <span class="scenario-label">Enterprise source</span>
+      <i class="fa-solid ${scenario.enterprise.icon}" aria-hidden="true"></i>
+      <span class="scenario-label">ERP source</span>
       <strong>${scenario.enterprise.name}</strong>
       <p>${scenario.enterprise.implication}</p>
     </article>
     <article class="scenario-card">
+      <i class="fa-solid ${scenario.integration.icon}" aria-hidden="true"></i>
       <span class="scenario-label">Integration layer</span>
       <strong>${scenario.integration.name}</strong>
       <p>${scenario.integration.strength}</p>
     </article>
     <article class="scenario-card">
+      <i class="fa-solid ${scenario.mes.icon}" aria-hidden="true"></i>
       <span class="scenario-label">MES option</span>
       <strong>${scenario.mes.name}</strong>
       <p>${scenario.mes.implication}</p>
@@ -399,14 +444,15 @@ function renderImpact(scenario) {
   const messages = scenarioMessages(scenario);
   layers.impact.innerHTML = messages.map((message, index) => `
     <article class="impact-card ${index === whatifState.activeIndex ? "active" : ""}">
-      <strong>${index + 1}. ${message.label}</strong>
+      <strong><i class="fa-solid ${message.direction === "response" ? "fa-reply" : "fa-arrow-right"}" aria-hidden="true"></i>${index + 1}. ${message.label}</strong>
       <p>${message.note}</p>
-      <div class="mini-pills">${message.requirements.map((requirement) => `<span>${requirement}</span>`).join("")}</div>
+      <div class="mini-pills">${message.requirements.map((requirement) => `<span>${requirementLabels[requirement] ?? requirement}</span>`).join("")}</div>
     </article>
   `).join("");
 }
 
 function animatePacket(now) {
+  whatifState.animationFrameId = null;
   const scenario = currentScenario();
   const participants = scenarioParticipants(scenario);
   const participantsById = Object.fromEntries(participants.map((participant) => [participant.id, participant]));
@@ -424,7 +470,7 @@ function animatePacket(now) {
   }
 
   if (renderVersion !== whatifState.renderVersion) {
-    requestAnimationFrame(animatePacket);
+    startAnimationLoop();
     return;
   }
 
@@ -444,7 +490,34 @@ function animatePacket(now) {
     });
   }
 
-  requestAnimationFrame(animatePacket);
+  startAnimationLoop();
+}
+
+function startAnimationLoop(resetClock = false, force = false) {
+  if (resetClock) {
+    const stepMs = whatifState.cycleMs / scenarioMessages(currentScenario()).length;
+    whatifState.startedAt = performance.now() - whatifState.activeIndex * stepMs;
+  }
+
+  if (force && whatifState.animationFrameId !== null) {
+    cancelAnimationFrame(whatifState.animationFrameId);
+    whatifState.animationFrameId = null;
+  }
+
+  if (whatifState.animationFrameId === null) {
+    whatifState.animationFrameId = requestAnimationFrame(animatePacket);
+  }
+}
+
+function bootScenario(resetIndex = true) {
+  if (resetIndex) {
+    whatifState.activeIndex = 0;
+  }
+
+  whatifState.playing = true;
+  whatifState.startedAt = performance.now();
+  renderScenario();
+  startAnimationLoop(false, true);
 }
 
 function restartScenario() {
@@ -452,6 +525,7 @@ function restartScenario() {
   whatifState.playing = true;
   whatifState.startedAt = performance.now();
   renderScenario();
+  startAnimationLoop(false, true);
 }
 
 [controls.enterprise, controls.integration, controls.mes].forEach((control) => {
@@ -475,5 +549,18 @@ controls.replay.addEventListener("click", () => {
   restartScenario();
 });
 
-renderScenario();
-requestAnimationFrame(animatePacket);
+window.addEventListener("pageshow", () => {
+  bootScenario(true);
+});
+
+window.addEventListener("load", () => {
+  bootScenario(true);
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    bootScenario(false);
+  }
+});
+
+bootScenario(true);

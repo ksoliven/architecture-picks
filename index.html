@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PICKS Capstone Final</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/picks-favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/picks-favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,75 +21,105 @@
         </div>
         <div>
           <p class="eyebrow">PICKS Capstone Final</p>
-          <h1>Final Architecture Review</h1>
-          <p class="subtitle">A concise walkthrough of the PICKS integration concept, architecture trade space, and modular system design.</p>
+          <h1>Final PICKS Review</h1>
+          <p class="subtitle">A clear walkthrough of how PICKS can connect inventory, finance, lab, and planning information.</p>
         </div>
       </div>
       <nav class="page-nav" aria-label="Architecture views">
-        <a class="nav-link active" href="index.html">Overview</a>
-        <a class="nav-link" href="html/baseline.html">Baseline</a>
-        <a class="nav-link" href="html/trade-study.html">Trade Study</a>
-        <a class="nav-link" href="html/what-if.html">What-if</a>
-        <a class="nav-link" href="html/system-design.html">System Design</a>
+        <a class="nav-link active" href="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i>Overview</a>
+        <a class="nav-link" href="html/baseline.html"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>Current Flow</a>
+        <a class="nav-link" href="html/trade-study.html"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>Compare Options</a>
+        <a class="nav-link" href="html/what-if.html"><i class="fa-solid fa-code-branch" aria-hidden="true"></i>What-if</a>
+        <a class="nav-link" href="html/system-design.html"><i class="fa-solid fa-cubes" aria-hidden="true"></i>System Layout</a>
+        <a class="nav-link" href="html/data-payloads.html"><i class="fa-solid fa-database" aria-hidden="true"></i>Information Examples</a>
+        <a class="nav-link" href="html/test-cases.html"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>Test Cases</a>
+        <a class="nav-link" href="html/final-materials.html"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Final Materials</a>
+        <a class="nav-link" href="html/acronyms.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Acronyms</a>
       </nav>
     </header>
 
     <main class="landing-layout">
-      <section class="landing-hero">
+      <section class="landing-hero" data-aos="fade-up">
         <div>
           <p class="eyebrow">ASE 6104 Capstone</p>
           <h2>PICKS Capstone Final</h2>
-          <p>Integrated presentation package for explaining the proposed PICKS architecture, future integration options, and modular path for continued development.</p>
+          <p>Presentation package for explaining what PICKS does, what systems it may connect to, and how those choices can change over time.</p>
           <div class="landing-meta" aria-label="Presentation focus areas">
-            <span>Integration Flow</span>
-            <span>Trade Study</span>
-            <span>Modular System Design</span>
+            <span>How Information Moves</span>
+            <span>Option Comparison</span>
+            <span>System Layout</span>
+          </div>
+          <div class="landing-stats" aria-label="Presentation quick facts">
+            <article>
+              <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+              <strong>8</strong>
+              <span>views</span>
+            </article>
+            <article>
+              <i class="fa-solid fa-arrows-turn-to-dots" aria-hidden="true"></i>
+              <strong>12</strong>
+              <span>flow steps</span>
+            </article>
+            <article>
+              <i class="fa-solid fa-table-list" aria-hidden="true"></i>
+              <strong>3</strong>
+              <span>decision areas</span>
+            </article>
+            <article>
+              <i class="fa-solid fa-book-open-reader" aria-hidden="true"></i>
+              <strong>19</strong>
+              <span>acronyms</span>
+            </article>
           </div>
         </div>
+        <img class="landing-logo" src="assets/picks-logo-full.png" alt="PICKS inventory visibility control logo">
       </section>
 
-      <section class="landing-grid" aria-label="Presentation pages">
-        <a class="landing-card flow-card" href="html/baseline.html">
-          <span class="card-number">01</span>
-          <div class="card-icon" aria-hidden="true"></div>
+      <section class="landing-directory" aria-label="Presentation pages" data-aos="fade-up">
+        <div class="section-heading">
           <div>
-            <h2>Baseline Data Flow</h2>
-            <p>Animated sequence showing how user requests move through RBAC, the integration layer, Oracle ERP, Workday, PEDYN, and the future MES candidate.</p>
+            <p class="eyebrow">Presentation Views</p>
+            <h2>Choose a View</h2>
           </div>
-          <strong>Open view</strong>
-        </a>
-
-        <a class="landing-card trade-card-link" href="html/trade-study.html">
-          <span class="card-number">02</span>
-          <div class="card-icon" aria-hidden="true"></div>
-          <div>
-            <h2>Trade Study</h2>
-            <p>Comparison of ERP, MES, and integration-layer options using the capstone criteria from the presentation trade space.</p>
-          </div>
-          <strong>Open view</strong>
-        </a>
-
-        <a class="landing-card scenario-card-link" href="html/what-if.html">
-          <span class="card-number">03</span>
-          <div class="card-icon" aria-hidden="true"></div>
-          <div>
-            <h2>What-if Architecture</h2>
-            <p>Scenario view for alternate enterprise sources, integration layers, and MES choices such as Workday, MuleSoft, Boomi, API Gateway, open source MES, or Tulip.</p>
-          </div>
-          <strong>Open view</strong>
-        </a>
-
-        <a class="landing-card design-card-link" href="html/system-design.html">
-          <span class="card-number">04</span>
-          <div class="card-icon" aria-hidden="true"></div>
-          <div>
-            <h2>System Design</h2>
-            <p>Clean BDD-style view of the modular PICKS architecture, major systems, click-to-reveal subsystems, and future improvement rationale.</p>
-          </div>
-          <strong>Open view</strong>
-        </a>
+        </div>
+        <div class="landing-link-list">
+          <a href="html/baseline.html">
+            <i class="fa-solid fa-route" aria-hidden="true"></i>
+            <span><strong>Current Information Flow</strong><small>Start here to see how a request is checked, enriched, matched, updated, and recorded.</small></span>
+          </a>
+          <a href="html/trade-study.html">
+            <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
+            <span><strong>Option Comparison</strong><small>Compare system choices using cost, fit, security, and upkeep.</small></span>
+          </a>
+          <a href="html/what-if.html">
+            <i class="fa-solid fa-shuffle" aria-hidden="true"></i>
+            <span><strong>What-if Scenarios</strong><small>See how future choices change the information flow.</small></span>
+          </a>
+          <a href="html/system-design.html">
+            <i class="fa-solid fa-sitemap" aria-hidden="true"></i>
+            <span><strong>System Layout</strong><small>Click through major PICKS systems and responsibilities.</small></span>
+          </a>
+          <a href="html/data-payloads.html">
+            <i class="fa-solid fa-database" aria-hidden="true"></i>
+            <span><strong>Information Examples</strong><small>Review information sent, received, checked, or recorded.</small></span>
+          </a>
+          <a href="html/test-cases.html">
+            <i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>
+            <span><strong>Test Cases</strong><small>Review verification examples for exchange, controls, and errors.</small></span>
+          </a>
+          <a href="html/final-materials.html">
+            <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+            <span><strong>Final Materials</strong><small>View the final presentation and SEMP report.</small></span>
+          </a>
+          <a href="html/acronyms.html">
+            <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+            <span><strong>Acronym Reference</strong><small>Look up abbreviations used in system names and examples.</small></span>
+          </a>
+        </div>
       </section>
     </main>
   </div>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="js/ui.js"></script>
 </body>
 </html>

@@ -2,117 +2,137 @@ const tradeStudies = {
   erp: {
     label: "ERP",
     eyebrow: "ERP Direction",
-    title: "Oracle ERP Candidates",
+    title: "Oracle ERP Options",
     recommendation: "Current direction: Oracle ecosystem",
     criteria: [
-      "Procurement Management",
-      "Supply Chain Management",
+      "Purchasing Support",
+      "Supply Chain Support",
       "Manufacturing Support",
-      "Integration Capability",
-      "Security / RBAC",
-      "Auditability",
+      "Connection Fit",
+      "Access Control",
+      "Activity History",
       "Reporting & Analytics",
-      "Scalability",
-      "Implementation Complexity",
+      "Growth Capacity",
+      "Setup Complexity",
       "Cost"
     ],
     options: [
       {
         name: "Oracle NetSuite",
-        type: "Lower complexity ERP candidate",
-        summary: "Better fit when lower implementation complexity and cost control are prioritized.",
-        ratings: ["Strong", "Moderate", "Moderate", "Strong", "Strong", "Strong", "Strong", "Strong", "Lower", "Lower"]
+        type: "Lower-complexity ERP option",
+        summary: "Better fit when lower setup complexity and cost control matter most, while still covering production, inventory, supply chain, and purchasing needs.",
+        ratings: ["Strong", "Moderate", "Strong", "Strong", "Strong", "Strong", "Strong", "Strong", "Lower", "Lower"],
+        sourceUrl: "https://www.netsuite.com/portal/products/erp.shtml",
+        sourceLabel: "NetSuite product page"
       },
       {
         name: "Oracle Fusion",
-        type: "Enterprise-scale ERP candidate",
-        summary: "Better fit when scalability, supply chain strength, analytics, and enterprise maturity are prioritized.",
-        ratings: ["Very Strong", "Very Strong", "Strong", "Strong", "Strong", "Strong", "Very Strong", "Very Strong", "Higher", "Higher"]
+        type: "Larger enterprise ERP option",
+        summary: "Better fit when growth capacity, supply chain strength, analytics, and maturity matter most.",
+        ratings: ["Very Strong", "Very Strong", "Strong", "Strong", "Strong", "Strong", "Very Strong", "Very Strong", "Higher", "Higher"],
+        sourceUrl: "https://www.oracle.com/scm/",
+        sourceLabel: "Oracle SCM"
       }
     ]
   },
   mes: {
     label: "MES",
     eyebrow: "MES Direction",
-    title: "MES Candidate Comparison",
+    title: "MES Options",
     recommendation: "Shortlist: InvenTree/open source, Tulip, Oracle Manufacturing Cloud",
     criteria: [
-      "Oracle Integration",
+      "Oracle Connection",
       "Inventory Management",
       "BOM Management",
-      "Traceability",
+      "History Tracking",
       "Asset Tracking",
-      "RBAC Support",
-      "Legacy Data Integration",
+      "Access Control",
+      "Older Data Support",
       "Cost",
-      "Implementation Complexity"
+      "Setup Complexity"
     ],
     options: [
       {
         name: "InvenTree",
-        type: "Open-source MES candidate",
-        summary: "Low cost and low complexity with strong inventory, BOM, and traceability support.",
-        ratings: ["Good", "Strong", "Strong", "Strong", "Strong", "Native", "Good", "Low", "Low"]
+        type: "Open-source MES option",
+        summary: "Low cost and low setup complexity with strong inventory, build list, and history tracking support.",
+        ratings: ["Good", "Strong", "Strong", "Strong", "Strong", "Native", "Good", "Low", "Low"],
+        sourceUrl: "https://docs.inventree.org/en/latest/",
+        sourceLabel: "InvenTree docs"
       },
       {
         name: "Odoo Manufacturing",
-        type: "Open-source / modular suite",
-        summary: "Balanced option with strong inventory and BOM support, but broader suite fit must be validated.",
-        ratings: ["Good", "Strong", "Strong", "Strong", "Strong", "Native", "Good", "Medium", "Medium"]
+        type: "Open-source modular suite",
+        summary: "Balanced option with strong inventory and build list support, but the broader suite fit still needs validation.",
+        ratings: ["Good", "Strong", "Strong", "Strong", "Strong", "Native", "Good", "Medium", "Medium"],
+        sourceUrl: "https://www.odoo.com/app/inventory",
+        sourceLabel: "Odoo Inventory"
       },
       {
         name: "Ignition MES",
         type: "Commercial MES",
-        summary: "Strong integration and traceability, but higher cost and implementation complexity.",
-        ratings: ["Very Good", "Moderate", "Moderate", "Strong", "Strong", "Enterprise", "Very Good", "High", "High"]
+        summary: "Strong connection and history tracking support, but higher cost and setup complexity.",
+        ratings: ["Very Good", "Moderate", "Moderate", "Strong", "Strong", "Advanced", "Very Good", "High", "High"],
+        sourceUrl: "https://www.sepasoft.com/products/",
+        sourceLabel: "Sepasoft MES"
       },
       {
         name: "Tulip",
         type: "Commercial frontline operations platform",
-        summary: "Strong integration and operator workflow potential with medium implementation complexity.",
-        ratings: ["Very Good", "Moderate", "Moderate", "Strong", "Moderate", "Enterprise", "Good", "High", "Medium"]
+        summary: "Strong system-connection and operator work-process potential with medium setup complexity.",
+        ratings: ["Very Good", "Moderate", "Moderate", "Strong", "Moderate", "Advanced", "Very Strong", "High", "Medium"],
+        sourceUrl: "https://support.tulip.co/docs/connectors",
+        sourceLabel: "Tulip Connectors"
       },
       {
         name: "Oracle Manufacturing Cloud",
-        type: "Oracle-native MES direction",
-        summary: "Native Oracle alignment and strong capability, but highest cost profile.",
-        ratings: ["Native", "Strong", "Strong", "Strong", "Strong", "Enterprise", "Moderate", "Very High", "High"]
+        type: "Oracle-aligned MES direction",
+        summary: "Strong Oracle alignment and capability, but highest cost profile.",
+        ratings: ["Native", "Strong", "Strong", "Strong", "Strong", "Advanced", "Moderate", "Very High", "High"],
+        sourceUrl: "https://www.oracle.com/scm/manufacturing/",
+        sourceLabel: "Oracle Manufacturing"
       }
     ]
   },
   integration: {
     label: "Integration Layer",
     eyebrow: "Integration Layer",
-    title: "Boomi vs MuleSoft vs Custom API",
-    recommendation: "Decision driver: governance, speed, sustainment burden",
+    title: "Boomi vs MuleSoft vs Custom Build",
+    recommendation: "Decision driver: oversight, speed, and upkeep",
     criteria: [
-      "Enterprise Governance",
-      "Connector Ecosystem",
-      "Implementation Speed",
-      "Field Mapping",
+      "Oversight",
+      "Ready-made Connections",
+      "Setup Speed",
+      "Data Matching",
       "Security Controls",
       "Customization Control",
-      "Sustainment Burden",
+      "Upkeep Burden",
       "Cost"
     ],
     options: [
       {
         name: "MuleSoft",
-        type: "Managed iPaaS",
-        summary: "Best fit when enterprise API governance, reusable connectors, and long-term integration management are the priority.",
-        ratings: ["Very Strong", "Very Strong", "Medium", "Strong", "Very Strong", "Medium", "Medium", "High"]
+        type: "Managed connection platform",
+        summary: "Best fit when strong oversight, reusable connections, and long-term management are the priority.",
+        ratings: ["Very Strong", "Very Strong", "Medium", "Strong", "Very Strong", "Medium", "Medium", "High"],
+        sourceUrl: "https://www.mulesoft.com/platform/api/manager",
+        sourceLabel: "MuleSoft platform"
       },
       {
         name: "Boomi",
-        type: "Low-code iPaaS",
-        summary: "Best fit when quick mapping, low-code integration, and faster workflow prototyping are the priority.",
-        ratings: ["Strong", "Strong", "Very High", "Very Strong", "Strong", "Medium", "Low", "Medium"]
+        type: "Low-code connection platform",
+        summary: "Best fit when quick data matching, broad connection coverage, and faster work-process testing are the priority.",
+        ratings: ["Very Strong", "Very Strong", "Very High", "Very Strong", "Strong", "Medium", "Low", "Medium"],
+        sourceUrl: "https://boomi.com/",
+        sourceLabel: "Boomi platform"
       },
       {
         name: "Custom API Gateway",
         type: "PICKS-owned API",
-        summary: "Best fit when maximum implementation control is needed and the team can absorb development and sustainment effort.",
-        ratings: ["Medium", "Medium", "Medium", "Medium", "Strong", "Very Strong", "High", "Low"]
+        summary: "Best fit when maximum control is needed and the team can absorb extra build and upkeep effort.",
+        ratings: ["Medium", "Medium", "Medium", "Medium", "Strong", "Very Strong", "High", "Low"],
+        sourceUrl: "data-payloads.html",
+        sourceLabel: "PICKS information examples"
       }
     ]
   }
@@ -124,36 +144,36 @@ const priorityProfiles = {
     weights: {}
   },
   mvp: {
-    label: "MVP speed / low disruption",
+    label: "First version / low disruption",
     weights: {
-      "Implementation Complexity": 1.6,
-      "Implementation Speed": 1.8,
-      "Field Mapping": 1.4,
-      "Sustainment Burden": 1.4,
+      "Setup Complexity": 1.6,
+      "Setup Speed": 1.8,
+      "Data Matching": 1.4,
+      "Upkeep Burden": 1.4,
       "Cost": 1.3
     }
   },
   enterprise: {
-    label: "Enterprise governance",
+    label: "Oversight and security",
     weights: {
-      "Enterprise Governance": 1.8,
-      "Security / RBAC": 1.5,
+      "Oversight": 1.8,
+      "Access Control": 1.5,
       "Security Controls": 1.7,
-      "Auditability": 1.5,
-      "Scalability": 1.4,
-      "Integration Capability": 1.3,
-      "Oracle Integration": 1.3
+      "Activity History": 1.5,
+      "Growth Capacity": 1.4,
+      "Connection Fit": 1.3,
+      "Oracle Connection": 1.3
     }
   },
   traceability: {
-    label: "Traceability / inventory",
+    label: "Inventory and history",
     weights: {
-      "Traceability": 1.8,
+      "History Tracking": 1.8,
       "Inventory Management": 1.6,
       "BOM Management": 1.4,
       "Asset Tracking": 1.4,
-      "Legacy Data Integration": 1.3,
-      "Auditability": 1.4
+      "Older Data Support": 1.3,
+      "Activity History": 1.4
     }
   }
 };
@@ -165,7 +185,7 @@ const scoreMap = {
   "Strong": 4,
   "Very Good": 4,
   "Good": 3,
-  "Enterprise": 4,
+  "Advanced": 4,
   "Medium": 3,
   "Moderate": 2,
   "Low": 5,
@@ -175,7 +195,17 @@ const scoreMap = {
   "Very High": 5
 };
 
-const inverseCriteria = new Set(["Cost", "Implementation Complexity", "Sustainment Burden"]);
+const inverseScoreMap = {
+  "Low": 5,
+  "Lower": 5,
+  "Medium": 3,
+  "Moderate": 3,
+  "High": 2,
+  "Higher": 2,
+  "Very High": 1
+};
+
+const inverseCriteria = new Set(["Cost", "Setup Complexity", "Upkeep Burden"]);
 
 const categorySelect = document.querySelector("#tradeCategory");
 const prioritySelect = document.querySelector("#tradePriority");
@@ -185,10 +215,15 @@ const profiles = document.querySelector("#tradeProfiles");
 const eyebrow = document.querySelector("#tradeEyebrow");
 const title = document.querySelector("#tradeTitle");
 const recommendation = document.querySelector("#tradeRecommendation");
+const scoreChart = document.querySelector("#tradeScoreChart");
+const weightList = document.querySelector("#tradeWeightList");
 
 function ratingScore(criteria, rating) {
-  const base = scoreMap[rating] ?? 3;
-  return inverseCriteria.has(criteria) ? 6 - base : base;
+  if (inverseCriteria.has(criteria)) {
+    return inverseScoreMap[rating] ?? 3;
+  }
+
+  return scoreMap[rating] ?? 3;
 }
 
 function optionScore(study, option, priorityKey) {
@@ -209,6 +244,36 @@ function rankedOptions(study, priorityKey) {
   return study.options
     .map((option) => ({ ...option, score: optionScore(study, option, priorityKey) }))
     .sort((a, b) => b.score - a.score);
+}
+
+function optionStrengths(study, option) {
+  return study.criteria
+    .map((criteria, index) => ({
+      criteria,
+      rating: option.ratings[index],
+      score: ratingScore(criteria, option.ratings[index])
+    }))
+    .filter((item) => item.score >= 4)
+    .slice(0, 3);
+}
+
+function optionRisks(study, option) {
+  return study.criteria
+    .map((criteria, index) => ({
+      criteria,
+      rating: option.ratings[index],
+      score: ratingScore(criteria, option.ratings[index])
+    }))
+    .filter((item) => item.score <= 2)
+    .slice(0, 3);
+}
+
+function weightedCriteria(study, priorityKey) {
+  const weights = priorityProfiles[priorityKey].weights;
+  return study.criteria
+    .map((criteria) => ({ criteria, weight: weights[criteria] ?? 1 }))
+    .filter((item) => item.weight > 1)
+    .sort((a, b) => b.weight - a.weight);
 }
 
 function renderControls() {
@@ -232,16 +297,41 @@ function renderTradeStudy() {
   recommendation.textContent = study.recommendation;
 
   winner.innerHTML = `
-    <span>Current top fit</span>
+    <span><i class="fa-solid fa-trophy" aria-hidden="true"></i>Current top fit</span>
     <strong>${top.name}</strong>
     <p>${top.score}/100 using ${priorityProfiles[priorityKey].label.toLowerCase()} weighting</p>
   `;
+
+  const maxScore = Math.max(...ranked.map((option) => option.score));
+  scoreChart.innerHTML = ranked.map((option, index) => `
+    <article class="trade-score-row ${index === 0 ? "top-score" : ""}">
+      <div>
+        <span>${index + 1}</span>
+        <strong>${option.name}</strong>
+      </div>
+      <div class="trade-score-track" aria-label="${option.name} score ${option.score} out of 100">
+        <i style="--score:${option.score}%; --relative:${Math.max(8, Math.round((option.score / maxScore) * 100))}%"></i>
+      </div>
+      <em>${option.score}</em>
+    </article>
+  `).join("");
+
+  const activeWeights = weightedCriteria(study, priorityKey);
+  weightList.innerHTML = activeWeights.length
+    ? activeWeights.map((item) => `
+      <span>
+        <i class="fa-solid fa-weight-hanging" aria-hidden="true"></i>
+        ${item.criteria}
+        <strong>${item.weight}x</strong>
+      </span>
+    `).join("")
+    : `<span><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>All factors weighted evenly<strong>1x</strong></span>`;
 
   table.innerHTML = `
     <table class="trade-table dynamic-trade-table">
       <thead>
         <tr>
-          <th>Criteria</th>
+          <th>Factor</th>
           ${study.options.map((option) => `<th>${option.name}<span>${optionScore(study, option, priorityKey)}/100</span></th>`).join("")}
         </tr>
       </thead>
@@ -259,15 +349,33 @@ function renderTradeStudy() {
     </table>
   `;
 
-  profiles.innerHTML = ranked.map((option, index) => `
+  profiles.innerHTML = ranked.map((option, index) => {
+    const strengths = optionStrengths(study, option);
+    const risks = optionRisks(study, option);
+    return `
     <article class="dynamic-option ${index === 0 ? "top-option" : ""}">
-      <span>${option.type}</span>
+      <span>${index === 0 ? '<i class="fa-solid fa-star" aria-hidden="true"></i>' : '<i class="fa-solid fa-circle-dot" aria-hidden="true"></i>'}${option.type}</span>
       <h3>${option.name}</h3>
+      <a class="source-link" href="${option.sourceUrl}" target="_blank" rel="noopener noreferrer">
+        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        ${option.sourceLabel}
+      </a>
       <div class="score-bar" style="--score:${option.score}%"><i></i></div>
       <strong>${option.score}/100</strong>
       <p>${option.summary}</p>
+      <div class="trade-profile-details">
+        <div>
+          <small>Strengths</small>
+          ${strengths.map((item) => `<b>${item.criteria}</b>`).join("") || "<b>No standout strengths</b>"}
+        </div>
+        <div>
+          <small>Watch items</small>
+          ${risks.map((item) => `<b>${item.criteria}</b>`).join("") || "<b>No major watch item</b>"}
+        </div>
+      </div>
     </article>
-  `).join("");
+  `;
+  }).join("");
 }
 
 categorySelect.addEventListener("change", renderTradeStudy);

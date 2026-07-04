@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PICKS System Design</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/picks-favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="../assets/picks-favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -16,104 +20,116 @@
           <span></span>
         </div>
         <div>
-          <p class="eyebrow">PICKS Architecture</p>
-          <h1>System Design</h1>
-          <p class="subtitle">Clean BDD view of the major systems, subsystems, and enterprise interfaces.</p>
+          <p class="eyebrow">PICKS Presentation</p>
+          <h1>System Layout</h1>
+          <p class="subtitle">Clickable view of the major systems from the BDD and what each system is responsible for.</p>
         </div>
       </div>
       <nav class="page-nav" aria-label="Architecture views">
-        <a class="nav-link" href="../index.html">Home</a>
-        <a class="nav-link" href="baseline.html">Baseline</a>
-        <a class="nav-link" href="trade-study.html">Trade Study</a>
-        <a class="nav-link" href="what-if.html">What-if</a>
-        <a class="nav-link active" href="system-design.html">System Design</a>
+        <a class="nav-link" href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i>Home</a>
+        <a class="nav-link" href="baseline.html"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>Current Flow</a>
+        <a class="nav-link" href="trade-study.html"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>Compare Options</a>
+        <a class="nav-link" href="what-if.html"><i class="fa-solid fa-code-branch" aria-hidden="true"></i>What-if</a>
+        <a class="nav-link active" href="system-design.html"><i class="fa-solid fa-cubes" aria-hidden="true"></i>System Layout</a>
+        <a class="nav-link" href="data-payloads.html"><i class="fa-solid fa-database" aria-hidden="true"></i>Information Examples</a>
+        <a class="nav-link" href="test-cases.html"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>Test Cases</a>
+        <a class="nav-link" href="final-materials.html"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Final Materials</a>
+        <a class="nav-link" href="acronyms.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Acronyms</a>
       </nav>
     </header>
 
     <main class="clean-bdd-layout">
-      <section class="clean-bdd-panel" aria-label="PICKS clean block definition diagram">
+      <section class="clean-bdd-panel" aria-label="PICKS system layout diagram" data-aos="fade-up">
         <div class="clean-bdd-header">
           <div>
-            <p class="eyebrow">bdd [Package] Architecture</p>
-            <h2>PICKS System Architecture</h2>
+            <p class="eyebrow">System View</p>
+            <h2>How PICKS Is Organized</h2>
           </div>
           <div class="clean-bdd-legend" aria-label="Diagram legend">
             <span><i class="legend-cream"></i>PICKS</span>
-            <span><i class="legend-yellow"></i>Governance</span>
+            <span><i class="legend-yellow"></i>Governance System</span>
             <span><i class="legend-green"></i>Lab / MES</span>
-            <span><i class="legend-cyan"></i>Logistics</span>
-            <span><i class="legend-purple"></i>Program Management</span>
-            <span><i class="legend-red"></i>External Systems</span>
+            <span><i class="legend-cyan"></i>Logistics System</span>
+            <span><i class="legend-purple"></i>Program Management System</span>
+            <span><i class="legend-red"></i>Connected Systems</span>
           </div>
         </div>
 
         <div class="clean-bdd-diagram">
-          <svg class="bdd-connectors" viewBox="0 0 1200 520" aria-hidden="true">
-            <path d="M600 96 L600 150" class="bdd-line"></path>
-            <path d="M600 150 L210 150 L210 218" class="bdd-line"></path>
-            <path d="M600 150 L470 150 L470 218" class="bdd-line"></path>
-            <path d="M600 150 L730 150 L730 218" class="bdd-line"></path>
-            <path d="M600 150 L990 150 L990 218" class="bdd-line"></path>
-            <path d="M990 305 L1110 305" class="bdd-line relationship"></path>
+          <svg class="bdd-connectors" viewBox="0 0 1380 640" aria-hidden="true">
+            <path d="M610 176 L610 230" class="bdd-line system-link core-link active"></path>
+            <path d="M610 230 L190 230 L190 328" class="bdd-line system-link governance-link active"></path>
+            <path d="M610 230 L470 230 L470 328" class="bdd-line system-link lab-link"></path>
+            <path d="M610 230 L750 230 L750 328" class="bdd-line system-link logistics-link"></path>
+            <path d="M610 230 L1030 230 L1030 328" class="bdd-line system-link program-link"></path>
+            <path d="M1140 420 L1186 420" class="bdd-line system-link external-link relationship"></path>
           </svg>
 
           <article class="clean-block picks-block">
-            <span>&lt;&lt;block&gt;&gt;</span>
+            <i class="fa-solid fa-boxes-stacked block-icon" aria-hidden="true"></i>
+            <span>Main system</span>
             <h3>PICKS</h3>
-            <p>Integrated platform for inventory visibility, traceability, workflow support, governance, and external system exchange.</p>
+            <p>Helps users see inventory, connect related records, support lab work, check access, and share information with other systems.</p>
           </article>
 
           <button class="clean-block governance-block system-trigger active" type="button" data-system="governance">
-            <span>&lt;&lt;system&gt;&gt;</span>
+            <i class="fa-solid fa-shield-halved block-icon" aria-hidden="true"></i>
+            <span>Part of PICKS</span>
             <h3>Governance System</h3>
-            <p>Defines user permissions, security controls, compliance evidence, audit history, and configurable policy rules.</p>
+            <p>Checks permissions, applies security rules, supports compliance, and keeps activity history.</p>
           </button>
 
           <button class="clean-block lab-block system-trigger" type="button" data-system="lab">
-            <span>&lt;&lt;system&gt;&gt;</span>
+            <i class="fa-solid fa-industry block-icon" aria-hidden="true"></i>
+            <span>Part of PICKS</span>
             <h3>Lab / MES System</h3>
-            <p>Supports build execution, work orders, component consumption, asset status, and lab traceability.</p>
+            <p>Supports build work, work orders, parts used, asset status, and lab history.</p>
           </button>
 
           <button class="clean-block logistics-block system-trigger" type="button" data-system="logistics">
-            <span>&lt;&lt;system&gt;&gt;</span>
+            <i class="fa-solid fa-warehouse block-icon" aria-hidden="true"></i>
+            <span>Part of PICKS</span>
             <h3>Logistics System</h3>
-            <p>Manages receiving, inventory updates, warehouse location, and material movement across projects.</p>
+            <p>Manages receiving, inventory updates, warehouse locations, and material movement across projects.</p>
           </button>
 
           <button class="clean-block program-block system-trigger" type="button" data-system="program">
-            <span>&lt;&lt;system&gt;&gt;</span>
-            <h3>Program Management</h3>
-            <p>Maintains product configuration, material planning, forecast needs, and program-level visibility.</p>
+            <i class="fa-solid fa-diagram-project block-icon" aria-hidden="true"></i>
+            <span>Part of PICKS</span>
+            <h3>Program Management System</h3>
+            <p>Maintains product structure, material planning, forecast needs, and program-level visibility.</p>
           </button>
 
-          <section class="clean-external">
-            <h3>External Systems</h3>
-            <article class="external-chip">Workday</article>
-            <article class="external-chip">Oracle ERP</article>
-            <article class="external-chip">PEDYN / Legacy Lab Tools</article>
-          </section>
+          <button class="clean-external system-trigger" type="button" data-system="external">
+            <h3>Connected Systems</h3>
+            <span class="external-copy">Select to see what outside systems contribute to PICKS.</span>
+            <span class="external-chip"><i class="fa-solid fa-coins" aria-hidden="true"></i>Workday</span>
+            <span class="external-chip"><i class="fa-solid fa-building-columns" aria-hidden="true"></i>Oracle ERP</span>
+            <span class="external-chip"><i class="fa-solid fa-database" aria-hidden="true"></i>PEDYN / Older Lab Tools</span>
+          </button>
         </div>
       </section>
 
-      <section class="subsystem-panel" id="subsystemPanel" aria-live="polite"></section>
+      <section class="subsystem-panel" id="subsystemPanel" aria-live="polite" data-aos="fade-up"></section>
 
-      <section class="clean-bdd-notes">
+      <section class="clean-bdd-notes" data-aos="fade-up">
         <article>
           <strong>Design Intent</strong>
-          <p>Keep PICKs modular so GTRI can evolve ERP, MES, and legacy integrations without replacing the whole architecture.</p>
+          <p>Keep PICKS flexible so GTRI can change ERP, MES, or older data connections without replacing everything.</p>
         </article>
         <article>
-          <strong>Primary Data Thread</strong>
-          <p>Request or PO data enters through enterprise systems, is governed by RBAC, updates logistics records, supports lab execution, and creates traceable audit evidence.</p>
+          <strong>Primary Information Path</strong>
+          <p>A request is checked, matched with purchasing and funding information, connected to lab history, used for inventory or lab work, and recorded.</p>
         </article>
         <article>
-          <strong>Quality Attributes</strong>
-          <p>Security, traceability, availability, performance, and adaptability drive the system boundaries and interface choices.</p>
+          <strong>What Matters Most</strong>
+          <p>Security, connected history, reliability, speed, and flexibility drive how PICKS is organized.</p>
         </article>
       </section>
     </main>
   </div>
   <script src="../js/system-design.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/ui.js"></script>
 </body>
 </html>
