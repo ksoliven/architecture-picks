@@ -255,6 +255,22 @@ function renderRequirementOptions() {
   });
 }
 
+function initializeRequirementChoices() {
+  if (typeof Choices === "undefined") return;
+
+  try {
+    new Choices(requirementFilter, {
+      allowHTML: false,
+      itemSelectText: "",
+      searchEnabled: true,
+      searchPlaceholderValue: "Find a focus area",
+      shouldSort: false
+    });
+  } catch (error) {
+    console.warn("Choices.js could not initialize for the focus area filter.", error);
+  }
+}
+
 function renderLegend() {
   legend.innerHTML = architecture.participants.map((participant) => {
     return `
@@ -514,6 +530,7 @@ replay.addEventListener("click", () => {
 });
 
 renderRequirementOptions();
+initializeRequirementChoices();
 renderLegend();
 renderParticipants();
 renderTraceGrid();

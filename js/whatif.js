@@ -69,6 +69,10 @@ const controls = {
   integration: document.querySelector("#integrationSelect"),
   mes: document.querySelector("#mesSelect"),
   step: document.querySelector("#scenarioStepSelect"),
+  stepButton: document.querySelector("#scenarioStepButton"),
+  stepButtonText: document.querySelector("#scenarioStepButtonText"),
+  stepMenu: document.querySelector("#scenarioStepMenu"),
+  stepPicker: document.querySelector("#scenarioStepPicker"),
   playPause: document.querySelector("#whatifPlayPause"),
   replay: document.querySelector("#whatifReplay")
 };
@@ -117,6 +121,8 @@ const requirementLabels = {
   "3.3.4": "Keep part history connected"
 };
 
+const choiceControls = {};
+
 function currentScenario() {
   return {
     enterpriseKey: controls.enterprise.value,
@@ -126,6 +132,37 @@ function currentScenario() {
     integration: scenarioOptions.integration[controls.integration.value],
     mes: scenarioOptions.mes[controls.mes.value]
   };
+}
+
+function initializeChoices() {
+  if (typeof Choices === "undefined") return;
+
+  const baseOptions = {
+    allowHTML: false,
+    itemSelectText: "",
+    searchEnabled: false,
+    shouldSort: false
+  };
+
+  try {
+    choiceControls.enterprise = new Choices(controls.enterprise, baseOptions);
+    choiceControls.integration = new Choices(controls.integration, baseOptions);
+    choiceControls.mes = new Choices(controls.mes, baseOptions);
+  } catch (error) {
+    console.warn("Choices.js could not initialize for What-if controls.", error);
+  }
+}
+
+function closeStepPicker() {
+  controls.stepPicker.classList.remove("open");
+  controls.stepButton.setAttribute("aria-expanded", "false");
+}
+
+function toggleStepPicker() {
+  const open = !controls.stepPicker.classList.contains("open");
+
+  controls.stepPicker.classList.toggle("open", open);
+  controls.stepButton.setAttribute("aria-expanded", String(open));
 }
 
 function scenarioParticipants(scenario) {
@@ -329,6 +366,18 @@ function renderScenario() {
   renderImpact(scenario);
 }
 
+function focusScenarioStep(index) {
+  const messages = scenarioMessages(currentScenario());
+  const safeIndex = Math.max(0, Math.min(index, messages.length - 1));
+  const stepMs = whatifState.cycleMs / messages.length;
+
+  whatifState.activeIndex = safeIndex;
+  whatifState.playing = false;
+  whatifState.startedAt = performance.now() - safeIndex * stepMs - stepMs * 0.5;
+  renderScenario();
+  startAnimationLoop(false, true);
+}
+
 function renderSummary(scenario) {
   layers.summary.innerHTML = `
     <article class="scenario-card">
@@ -362,10 +411,23 @@ function renderLegend(participants) {
 }
 
 function renderStepOptions(messages) {
-  controls.step.innerHTML = messages.map((message, index) => {
-    const selected = index === whatifState.activeIndex ? "selected" : "";
-    return `<option value="${index}" ${selected}>${index + 1}. ${message.label}</option>`;
+  const stepOptions = messages.map((message, index) => ({
+    label: `${index + 1}. ${message.label}`,
+    selected: index === whatifState.activeIndex,
+    value: String(index)
+  }));
+
+  controls.step.innerHTML = stepOptions.map((option) => {
+    const selected = option.selected ? "selected" : "";
+    return `<option value="${option.value}" ${selected}>${option.label}</option>`;
   }).join("");
+  controls.stepButtonText.textContent = stepOptions[whatifState.activeIndex]?.label ?? "Select a step";
+  controls.stepMenu.innerHTML = stepOptions.map((option) => `
+    <button class="step-picker-option ${option.selected ? "active" : ""}" type="button" role="option" aria-selected="${option.selected}" data-step-index="${option.value}">
+      <span>${String(Number(option.value) + 1).padStart(2, "0")}</span>
+      <strong>${option.label.replace(/^\d+\.\s/, "")}</strong>
+    </button>
+  `).join("");
 }
 
 function renderParticipants(participants) {
@@ -414,9 +476,7 @@ function renderMessages(messages, participantsById) {
     const lines = splitLabel(message.label, 24);
     appendSvgLines(label, lines, (startX + endX) / 2, y - (lines.length > 1 ? 24 : 12), 17);
     group.addEventListener("click", () => {
-      whatifState.activeIndex = index;
-      whatifState.startedAt = performance.now();
-      renderScenario();
+      focusScenarioStep(index);
     });
     group.append(line, label);
     layers.messages.appendChild(group);
@@ -443,11 +503,11 @@ function renderPacket(messages, participantsById) {
 function renderImpact(scenario) {
   const messages = scenarioMessages(scenario);
   layers.impact.innerHTML = messages.map((message, index) => `
-    <article class="impact-card ${index === whatifState.activeIndex ? "active" : ""}">
+    <button class="impact-card ${index === whatifState.activeIndex ? "active" : ""}" type="button" data-step-index="${index}">
       <strong><i class="fa-solid ${message.direction === "response" ? "fa-reply" : "fa-arrow-right"}" aria-hidden="true"></i>${index + 1}. ${message.label}</strong>
       <p>${message.note}</p>
       <div class="mini-pills">${message.requirements.map((requirement) => `<span>${requirementLabels[requirement] ?? requirement}</span>`).join("")}</div>
-    </article>
+    </button>
   `).join("");
 }
 
@@ -533,10 +593,42 @@ function restartScenario() {
 });
 
 controls.step.addEventListener("change", () => {
-  whatifState.activeIndex = Number(controls.step.value);
-  whatifState.playing = false;
-  whatifState.startedAt = performance.now() - whatifState.activeIndex * (whatifState.cycleMs / scenarioMessages(currentScenario()).length);
-  renderScenario();
+  focusScenarioStep(Number(controls.step.value));
+});
+
+controls.stepButton.addEventListener("click", (event) => {
+  event.stopPropagation();
+  toggleStepPicker();
+});
+
+controls.stepMenu.addEventListener("click", (event) => {
+  const option = event.target.closest("[data-step-index]");
+
+  if (!option) return;
+
+  focusScenarioStep(Number(option.dataset.stepIndex));
+  closeStepPicker();
+  controls.stepButton.focus();
+});
+
+document.addEventListener("click", (event) => {
+  if (!event.target.closest("#scenarioStepPicker")) {
+    closeStepPicker();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeStepPicker();
+  }
+});
+
+layers.impact.addEventListener("click", (event) => {
+  const card = event.target.closest("[data-step-index]");
+
+  if (!card) return;
+
+  focusScenarioStep(Number(card.dataset.stepIndex));
 });
 
 controls.playPause.addEventListener("click", () => {
@@ -548,6 +640,8 @@ controls.playPause.addEventListener("click", () => {
 controls.replay.addEventListener("click", () => {
   restartScenario();
 });
+
+initializeChoices();
 
 window.addEventListener("pageshow", () => {
   bootScenario(true);

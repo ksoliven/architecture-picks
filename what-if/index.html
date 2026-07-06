@@ -8,6 +8,7 @@
   <link rel="icon" type="image/png" sizes="64x64" href="../assets/picks-favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/styles/choices.min.css">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -51,28 +52,28 @@
           </div>
         </div>
         <div class="scenario-controls">
-          <label>
-            <span><i class="fa-solid fa-building-columns" aria-hidden="true"></i>ERP source</span>
+          <div class="select-field">
+            <label for="enterpriseSelect"><i class="fa-solid fa-building-columns" aria-hidden="true"></i>ERP source</label>
             <select id="enterpriseSelect">
-              <option value="workday">Workday primary</option>
-              <option value="oracle">Oracle primary</option>
+              <option value="workday">Workday</option>
+              <option value="oracle">Oracle</option>
             </select>
-          </label>
-          <label>
-            <span><i class="fa-solid fa-network-wired" aria-hidden="true"></i>Integration layer</span>
+          </div>
+          <div class="select-field">
+            <label for="integrationSelect"><i class="fa-solid fa-network-wired" aria-hidden="true"></i>Integration layer</label>
             <select id="integrationSelect">
               <option value="mulesoft">MuleSoft</option>
               <option value="boomi">Boomi</option>
               <option value="api">Custom API Gateway</option>
             </select>
-          </label>
-          <label>
-            <span><i class="fa-solid fa-industry" aria-hidden="true"></i>MES option</span>
+          </div>
+          <div class="select-field">
+            <label for="mesSelect"><i class="fa-solid fa-industry" aria-hidden="true"></i>MES option</label>
             <select id="mesSelect">
               <option value="opensource">Open-source MES</option>
               <option value="tulip">Tulip</option>
             </select>
-          </label>
+          </div>
         </div>
       </section>
 
@@ -81,8 +82,14 @@
       <section class="diagram-panel whatif-diagram-panel" aria-label="What-if architecture diagram" data-aos="fade-up">
         <div class="diagram-toolbar">
           <div class="filter-control">
-            <label class="select-label" for="scenarioStepSelect">Focus step</label>
-            <select id="scenarioStepSelect"></select>
+            <span class="select-label" id="scenarioStepLabel">Focus step</span>
+            <select class="visually-hidden-select" id="scenarioStepSelect" aria-hidden="true" tabindex="-1"></select>
+            <div class="step-picker" id="scenarioStepPicker">
+              <button class="step-picker-button" type="button" id="scenarioStepButton" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="scenarioStepLabel scenarioStepButtonText">
+                <span id="scenarioStepButtonText"></span>
+              </button>
+              <div class="step-picker-menu" id="scenarioStepMenu" role="listbox" aria-labelledby="scenarioStepLabel"></div>
+            </div>
           </div>
           <div class="toolbar-actions">
             <button class="control-button" type="button" id="whatifPlayPause"><i class="fa-solid fa-pause" aria-hidden="true"></i>Pause</button>
@@ -115,6 +122,7 @@
     </main>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/scripts/choices.min.js"></script>
   <script src="../js/whatif.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="../js/ui.js"></script>

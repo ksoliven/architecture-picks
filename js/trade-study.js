@@ -217,6 +217,7 @@ const title = document.querySelector("#tradeTitle");
 const recommendation = document.querySelector("#tradeRecommendation");
 const scoreChart = document.querySelector("#tradeScoreChart");
 const weightList = document.querySelector("#tradeWeightList");
+const tradeChoiceControls = {};
 
 function ratingScore(criteria, rating) {
   if (inverseCriteria.has(criteria)) {
@@ -284,6 +285,24 @@ function renderControls() {
   prioritySelect.innerHTML = Object.entries(priorityProfiles)
     .map(([key, profile]) => `<option value="${key}">${profile.label}</option>`)
     .join("");
+}
+
+function initializeTradeChoices() {
+  if (typeof Choices === "undefined") return;
+
+  const baseOptions = {
+    allowHTML: false,
+    itemSelectText: "",
+    searchEnabled: false,
+    shouldSort: false
+  };
+
+  try {
+    tradeChoiceControls.category = new Choices(categorySelect, baseOptions);
+    tradeChoiceControls.priority = new Choices(prioritySelect, baseOptions);
+  } catch (error) {
+    console.warn("Choices.js could not initialize for Compare Options.", error);
+  }
 }
 
 function renderTradeStudy() {
@@ -382,4 +401,5 @@ categorySelect.addEventListener("change", renderTradeStudy);
 prioritySelect.addEventListener("change", renderTradeStudy);
 
 renderControls();
+initializeTradeChoices();
 renderTradeStudy();
