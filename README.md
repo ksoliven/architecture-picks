@@ -23,7 +23,7 @@ Context -> Requirements -> Architecture -> Verification -> Final Recommendation
 - `/data-payloads/` - Data Payloads page with information exchange and error examples
 - `/test-cases/` - verification examples and test coverage
 - `/final-recommendation/` - Final Recommendation page with hybrid architecture path, known dependencies, and phased next steps
-- `/final-materials/` - final presentation, MSOSA model ZIP, and SEMP report
+- `/final-materials/` - team/sponsor context, final presentation, MSOSA model ZIP, and SEMP report
 - `/acronyms/` - acronym reference
 
 ## Final Materials
@@ -35,6 +35,12 @@ The final materials page links to:
 - `assets/materials/final-system-engineering-document.pdf`
 
 The PDF previews in the browser. The PowerPoint and MSOSA model package are provided as downloadable files.
+
+The page also identifies the capstone team and sponsor context:
+
+- Team 2: Lauren Campbell, Sasha Rios, Naksha Roy, Kate Soliven, and Anna Tri
+- Sponsor: Calvin Coker, Georgia Tech Research Institute
+- Sponsor representative: John Davis
 
 The materials folder also includes source/export versions of the SEMP report:
 

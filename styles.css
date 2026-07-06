@@ -1018,6 +1018,16 @@ h1 {
   margin-top: 4px;
 }
 
+.landing-credit {
+  margin: 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  padding: 4px 2px 0;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+}
+
 .materials-layout {
   display: grid;
   gap: 18px;
@@ -1104,6 +1114,82 @@ h1 {
 
 .materials-panel {
   padding: 18px;
+}
+
+.team-sponsor-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+
+.team-sponsor-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.95fr);
+  gap: 12px;
+}
+
+.team-sponsor-grid article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfe;
+  padding: 16px;
+}
+
+.team-sponsor-grid i {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--gold-soft);
+  color: var(--strong-line);
+  font-size: 17px;
+}
+
+.team-sponsor-grid span {
+  display: block;
+  margin-top: 12px;
+  color: var(--accent-strong);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.team-sponsor-grid h3 {
+  margin: 6px 0 10px;
+  color: var(--ink);
+  font-size: 21px;
+  line-height: 1.2;
+}
+
+.team-member-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.team-member-list strong {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  border: 1px solid rgba(0, 48, 87, 0.14);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--strong-line);
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.sponsor-card p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.sponsor-card p strong {
+  color: var(--ink);
 }
 
 .materials-tabs {
@@ -4226,6 +4312,7 @@ select {
   .test-workspace,
   .test-confirm-grid,
   .test-refinement-grid,
+  .team-sponsor-grid,
   .subsystem-grid {
     grid-template-columns: 1fr;
   }
