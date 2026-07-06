@@ -131,7 +131,7 @@ const tradeStudies = {
         type: "PICKS-owned API",
         summary: "Best fit when maximum control is needed and the team can absorb extra build and upkeep effort.",
         ratings: ["Medium", "Medium", "Medium", "Medium", "Strong", "Very Strong", "High", "Low"],
-        sourceUrl: "data-payloads.html",
+        sourceUrl: "../data-payloads/",
         sourceLabel: "PICKS information examples"
       }
     ]

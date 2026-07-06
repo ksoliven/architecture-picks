@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PICKS Interview Findings</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/picks-favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="../assets/picks-favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="page-header">
+      <div class="brand-lockup">
+        <div class="logo-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div>
+          <p class="eyebrow">PICKS Presentation</p>
+          <h1>Interview Findings</h1>
+          <p class="subtitle">What lab conversations revealed about current tools, material flow, pain points, and adoption needs.</p>
+        </div>
+      </div>
+      <nav class="page-nav" aria-label="Architecture views">
+        <a class="nav-link" href="../"><i class="fa-solid fa-house" aria-hidden="true"></i>Home</a>
+        <a class="nav-link" href="../background/"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Background</a>
+        <a class="nav-link" href="../requirements/"><i class="fa-solid fa-list-check" aria-hidden="true"></i>Requirements</a>
+        <a class="nav-link active" href="../interview-findings/"><i class="fa-solid fa-comments" aria-hidden="true"></i>Interview Findings</a>
+        <a class="nav-link" href="../baseline/"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>Current Flow</a>
+        <a class="nav-link" href="../trade-study/"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>Compare Options</a>
+        <a class="nav-link" href="../what-if/"><i class="fa-solid fa-code-branch" aria-hidden="true"></i>What-if</a>
+        <a class="nav-link" href="../system-design/"><i class="fa-solid fa-cubes" aria-hidden="true"></i>System Layout</a>
+        <a class="nav-link" href="../data-payloads/"><i class="fa-solid fa-database" aria-hidden="true"></i>Data Payloads</a>
+        <a class="nav-link" href="../test-cases/"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>Test Cases</a>
+        <a class="nav-link" href="../final-recommendation/"><i class="fa-solid fa-bullseye" aria-hidden="true"></i>Final Recommendation</a>
+        <a class="nav-link" href="../final-materials/"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Final Materials</a>
+        <a class="nav-link" href="../acronyms/"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Acronyms</a>
+      </nav>
+    </header>
+
+    <main class="interview-layout">
+      <section class="interview-hero" data-aos="fade-up">
+        <div>
+          <p class="eyebrow">Stakeholder Discovery</p>
+          <h2>What the lab interviews revealed</h2>
+          <p>Current workflows depend on disconnected tools, manual handoffs, and lab-specific practices.</p>
+        </div>
+        <div class="interview-metrics" aria-label="Interview findings summary">
+          <article><strong>3</strong><span>lab contexts reviewed</span></article>
+          <article><strong>5</strong><span>major pain-point themes</span></article>
+          <article><strong>4</strong><span>design implications</span></article>
+        </div>
+      </section>
+
+      <section class="interview-section" data-aos="fade-up">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Current State</p>
+            <h2>Common Tool Landscape</h2>
+          </div>
+        </div>
+        <div class="tool-landscape">
+          <article>
+            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+            <strong>Procurement</strong>
+            <p>Purchasing and financial activity typically begins in enterprise or university-managed procurement systems.</p>
+          </article>
+          <article>
+            <i class="fa-solid fa-coins" aria-hidden="true"></i>
+            <strong>Workday / Finance</strong>
+            <p>Financial and project context is handled separately from many lab execution records.</p>
+          </article>
+          <article>
+            <i class="fa-solid fa-database" aria-hidden="true"></i>
+            <strong>PEDYN / Lab Tools</strong>
+            <p>Some labs use PEDYN or customized lab tools for inventory, kitting, work orders, and history.</p>
+          </article>
+          <article>
+            <i class="fa-solid fa-tag" aria-hidden="true"></i>
+            <strong>Asset Systems</strong>
+            <p>Tagged assets and formal property tracking may follow separate state or university requirements.</p>
+          </article>
+          <article>
+            <i class="fa-solid fa-ticket" aria-hidden="true"></i>
+            <strong>Tickets and Manual Handoffs</strong>
+            <p>Email, ticketing, spreadsheets, and manual entry often connect work that systems do not connect directly.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="interview-workflow" data-aos="fade-up">
+        <div>
+          <p class="eyebrow">Observed Flow</p>
+          <h2>Material movement often crosses several ownership boundaries.</h2>
+          <p>Requests, purchasing, receiving, lab use, inventory updates, and compliance records may be owned by different teams or systems.</p>
+        </div>
+        <div class="interview-flow" aria-label="Observed material flow">
+          <span>Request</span>
+          <span>Procure</span>
+          <span>Receive</span>
+          <span>Record</span>
+          <span>Use / Build</span>
+          <span>Trace</span>
+        </div>
+      </section>
+
+      <section class="interview-section" data-aos="fade-up">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Pain Points</p>
+            <h2>What kept showing up</h2>
+          </div>
+        </div>
+        <div class="pain-grid">
+          <article>
+            <span>01</span>
+            <h3>Manual workarounds</h3>
+            <p>Users often bridge system gaps with manual entry, emails, spreadsheets, and repeated updates.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Disconnected histories</h3>
+            <p>Procurement, inventory, lab execution, and compliance context can be hard to follow as one story.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Inconsistent lab practices</h3>
+            <p>Labs use different workflows and customized tools, making a single replacement approach risky.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Access control concerns</h3>
+            <p>Broad edit access and unclear ownership can create risk for sensitive or compliance-relevant records.</p>
+          </article>
+          <article>
+            <span>05</span>
+            <h3>Usability and adoption risk</h3>
+            <p>Legacy interfaces and training burden make adoption as important as technical capability.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="interview-section" data-aos="fade-up">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Design Implications</p>
+            <h2>How findings shaped PICKS</h2>
+          </div>
+        </div>
+        <div class="finding-implications">
+          <article>
+            <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+            <strong>Integrate before replacing</strong>
+            <p>PICKS should connect useful data and workflows without assuming every lab can immediately abandon existing tools.</p>
+          </article>
+          <article>
+            <i class="fa-solid fa-fingerprint" aria-hidden="true"></i>
+            <strong>Use persistent identifiers</strong>
+            <p>Parts, lots, assets, kits, and builds need identifiers that make history searchable and traceable.</p>
+          </article>
+          <article>
+            <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+            <strong>Control protected actions</strong>
+            <p>RBAC and audit logging should be part of the architecture, not an afterthought.</p>
+          </article>
+          <article>
+            <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+            <strong>Support adoption</strong>
+            <p>In-system guidance, clear states, and simple workflows reduce the training load for future users.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/ui.js"></script>
+</body>
+</html>

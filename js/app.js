@@ -1,12 +1,12 @@
 const architecture = {
   participants: [
-    { id: "user", name: "User", color: "#d946ef", role: "Requester" },
-    { id: "rbac", name: "Access Rules", color: "#14b8a6", role: "Approves actions" },
-    { id: "integration", name: "Integration Layer", color: "#f97316", role: "Routes information" },
-    { id: "oracle", name: "Oracle ERP", color: "#06b6d4", role: "Purchasing" },
-    { id: "workday", name: "Workday", color: "#22c55e", role: "Finance" },
-    { id: "pedyn", name: "PEDYN Lab History", color: "#8b5cf6", role: "Older lab records" },
-    { id: "mes", name: "Future MES Candidate", color: "#ef4444", role: "Lab execution" }
+    { id: "user", name: "User", color: "#b3a369", role: "Requester" },
+    { id: "rbac", name: "Access Rules", color: "#003057", role: "Approves actions" },
+    { id: "integration", name: "Integration Layer", color: "#004f9f", role: "Routes information" },
+    { id: "oracle", name: "Oracle ERP", color: "#857437", role: "Purchasing" },
+    { id: "workday", name: "Workday", color: "#4b5563", role: "Finance" },
+    { id: "pedyn", name: "PEDYN Lab History", color: "#64748b", role: "Older lab records" },
+    { id: "mes", name: "Future MES Candidate", color: "#0f766e", role: "Lab execution" }
   ],
   requirements: [
     { id: "SYS-6.1", title: "Share information across systems", description: "PICKS needs to move useful information between ERP, Workday, inventory, and lab systems." },
@@ -154,7 +154,10 @@ const legend = document.querySelector("#legend");
 const requirementFilter = document.querySelector("#requirementFilter");
 const timeline = document.querySelector("#timeline");
 const traceGrid = document.querySelector("#traceGrid");
+const detailsPanel = document.querySelector(".details-panel");
+const stepCount = document.querySelector("#stepCount");
 const stepTitle = document.querySelector("#stepTitle");
+const stepRoute = document.querySelector("#stepRoute");
 const stepDescription = document.querySelector("#stepDescription");
 const payloadList = document.querySelector("#payloadList");
 const requirementList = document.querySelector("#requirementList");
@@ -376,7 +379,14 @@ function renderPacket() {
 
 function renderDetails() {
   const message = currentMessage();
+  const messages = matchingMessages();
+  const messageIndex = messages.indexOf(message);
+  const from = participantById[message.from].name;
+  const to = participantById[message.to].name;
+  detailsPanel.scrollTop = 0;
+  stepCount.textContent = `Step ${messageIndex + 1} of ${messages.length}`;
   stepTitle.textContent = message.label;
+  stepRoute.textContent = `${from} to ${to}`;
   stepDescription.textContent = message.description;
   payloadList.innerHTML = message.payload.map((item) => `<span class="pill">${item}</span>`).join("");
   requirementList.innerHTML = message.requirements.map((id) => {

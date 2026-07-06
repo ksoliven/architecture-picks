@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PICKS Option Comparison</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/picks-favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="../assets/picks-favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="page-header">
+      <div class="brand-lockup">
+        <div class="logo-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div>
+          <p class="eyebrow">PICKS Presentation</p>
+          <h1>Option Comparison</h1>
+          <p class="subtitle">Interactive comparison of ERP, MES, and integration-layer choices.</p>
+        </div>
+      </div>
+      <nav class="page-nav" aria-label="Architecture views">
+        <a class="nav-link" href="../"><i class="fa-solid fa-house" aria-hidden="true"></i>Home</a>
+        <a class="nav-link" href="../background/"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Background</a>
+        <a class="nav-link" href="../requirements/"><i class="fa-solid fa-list-check" aria-hidden="true"></i>Requirements</a>
+        <a class="nav-link" href="../interview-findings/"><i class="fa-solid fa-comments" aria-hidden="true"></i>Interview Findings</a>
+        <a class="nav-link" href="../baseline/"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>Current Flow</a>
+        <a class="nav-link active" href="../trade-study/"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>Compare Options</a>
+        <a class="nav-link" href="../what-if/"><i class="fa-solid fa-code-branch" aria-hidden="true"></i>What-if</a>
+        <a class="nav-link" href="../system-design/"><i class="fa-solid fa-cubes" aria-hidden="true"></i>System Layout</a>
+        <a class="nav-link" href="../data-payloads/"><i class="fa-solid fa-database" aria-hidden="true"></i>Data Payloads</a>
+        <a class="nav-link" href="../test-cases/"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>Test Cases</a>
+        <a class="nav-link" href="../final-recommendation/"><i class="fa-solid fa-bullseye" aria-hidden="true"></i>Final Recommendation</a>
+        <a class="nav-link" href="../final-materials/"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Final Materials</a>
+        <a class="nav-link" href="../acronyms/"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Acronyms</a>
+      </nav>
+    </header>
+
+    <main class="trade-layout">
+      <section class="trade-hero" data-aos="fade-up">
+        <div>
+          <p class="eyebrow">Decision Support</p>
+          <h2>Compare the Choices</h2>
+          <p>Select a decision area, change what matters most, and compare the options using the same scoring method.</p>
+        </div>
+        <div class="trade-summary">
+          <span>ERP</span>
+          <span>MES</span>
+          <span>Integration Layer</span>
+        </div>
+      </section>
+
+      <section class="trade-dashboard" data-aos="fade-up">
+        <div class="trade-controls">
+          <label>
+            <span>Decision area</span>
+            <select id="tradeCategory"></select>
+          </label>
+          <label>
+            <span>What matters most</span>
+            <select id="tradePriority"></select>
+          </label>
+        </div>
+        <div class="trade-winner" id="tradeWinner" aria-live="polite"></div>
+      </section>
+
+      <section class="trade-section trade-visual-section" data-aos="fade-up">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Score Model</p>
+            <h2>Current Ranking</h2>
+          </div>
+        </div>
+        <div class="trade-visual-grid">
+          <div class="trade-score-chart" id="tradeScoreChart" aria-live="polite"></div>
+          <div class="trade-weight-panel">
+            <span>Factors emphasized</span>
+            <div class="trade-weight-list" id="tradeWeightList"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="trade-section" data-aos="fade-up">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" id="tradeEyebrow"></p>
+            <h2 id="tradeTitle"></h2>
+          </div>
+          <span class="recommendation" id="tradeRecommendation"></span>
+        </div>
+        <div class="dynamic-table-wrap" id="tradeTable"></div>
+      </section>
+
+      <section class="trade-section" data-aos="fade-up">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Option Details</p>
+            <h2>What Each Option Means</h2>
+          </div>
+        </div>
+        <div class="dynamic-option-grid" id="tradeProfiles"></div>
+      </section>
+
+      <section class="clean-bdd-notes" data-aos="fade-up">
+        <article>
+          <strong>Recommended Framing</strong>
+          <p>Keep PICKS flexible so ERP, MES, and integration-layer choices can change without redesigning everything.</p>
+        </article>
+        <article>
+          <strong>First-Version Bias</strong>
+          <p>Favor options that improve inventory visibility, protect access, keep activity records, and avoid disrupting lab work.</p>
+        </article>
+        <article>
+          <strong>Future Decision Point</strong>
+          <p>Final selection should follow Georgia system direction, lab rollout needs, security needs, and available support resources.</p>
+        </article>
+      </section>
+    </main>
+  </div>
+  <script src="../js/trade-study.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/ui.js"></script>
+</body>
+</html>

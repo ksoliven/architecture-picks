@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PICKS Requirements</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/picks-favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="../assets/picks-favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="page-header">
+      <div class="brand-lockup">
+        <div class="logo-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div>
+          <p class="eyebrow">PICKS Presentation</p>
+          <h1>General Requirements</h1>
+          <p class="subtitle">A high-level view of what PICKS needs to support and how those needs shape the architecture.</p>
+        </div>
+      </div>
+      <nav class="page-nav" aria-label="Architecture views">
+        <a class="nav-link" href="../"><i class="fa-solid fa-house" aria-hidden="true"></i>Home</a>
+        <a class="nav-link" href="../background/"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Background</a>
+        <a class="nav-link active" href="../requirements/"><i class="fa-solid fa-list-check" aria-hidden="true"></i>Requirements</a>
+        <a class="nav-link" href="../interview-findings/"><i class="fa-solid fa-comments" aria-hidden="true"></i>Interview Findings</a>
+        <a class="nav-link" href="../baseline/"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>Current Flow</a>
+        <a class="nav-link" href="../trade-study/"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>Compare Options</a>
+        <a class="nav-link" href="../what-if/"><i class="fa-solid fa-code-branch" aria-hidden="true"></i>What-if</a>
+        <a class="nav-link" href="../system-design/"><i class="fa-solid fa-cubes" aria-hidden="true"></i>System Layout</a>
+        <a class="nav-link" href="../data-payloads/"><i class="fa-solid fa-database" aria-hidden="true"></i>Data Payloads</a>
+        <a class="nav-link" href="../test-cases/"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>Test Cases</a>
+        <a class="nav-link" href="../final-recommendation/"><i class="fa-solid fa-bullseye" aria-hidden="true"></i>Final Recommendation</a>
+        <a class="nav-link" href="../final-materials/"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Final Materials</a>
+        <a class="nav-link" href="../acronyms/"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Acronyms</a>
+      </nav>
+    </header>
+
+    <main class="requirements-layout">
+      <section class="requirements-hero" data-aos="fade-up">
+        <div>
+          <p class="eyebrow">Requirements Overview</p>
+          <h2>Requirements connect the problem, system architecture, and verification plan.</h2>
+          <p>The final PICKS framework organizes requirements around inventory visibility, traceability, kitting, compliance, interface readiness, enterprise integration, and user adoption.</p>
+        </div>
+        <div class="requirements-summary" aria-label="Requirements summary">
+          <article><strong>7</strong><span>stakeholder need areas</span></article>
+          <article><strong>12</strong><span>highlighted system requirements</span></article>
+          <article><strong>3</strong><span>priority drivers</span></article>
+        </div>
+      </section>
+
+      <section class="requirements-section" data-aos="fade-up">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Stakeholder Needs</p>
+            <h2>What PICKS Must Support</h2>
+          </div>
+        </div>
+        <div class="need-grid">
+          <article>
+            <span>SNR-1</span>
+            <h3>Inventory Visibility</h3>
+            <p>Provide clearer inventory status, lifecycle workflow support, and project-level visibility.</p>
+          </article>
+          <article>
+            <span>SNR-2</span>
+            <h3>Traceability</h3>
+            <p>Maintain chain-of-custody and history for critical parts, components, kits, and related records.</p>
+          </article>
+          <article>
+            <span>SNR-3</span>
+            <h3>Kitting</h3>
+            <p>Support controlled kit creation, BOM validation, configuration tracking, and material issuance.</p>
+          </article>
+          <article>
+            <span>SNR-4</span>
+            <h3>Compliance Artifacts</h3>
+            <p>Connect inventory and release workflows to contract-driven documentation and audit evidence.</p>
+          </article>
+          <article>
+            <span>SNR-5</span>
+            <h3>Interface Readiness</h3>
+            <p>Define how external data is retrieved, mapped, displayed, protected, and handled during failures.</p>
+          </article>
+          <article>
+            <span>SNR-6</span>
+            <h3>Enterprise Integration</h3>
+            <p>Exchange data with enterprise systems without duplicating future ERP responsibilities.</p>
+          </article>
+          <article>
+            <span>SNR-7</span>
+            <h3>Adoption and Training</h3>
+            <p>Support user guidance and onboarding so the architecture can be adopted across lab contexts.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="requirements-section" data-aos="fade-up">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Highlighted Requirements</p>
+            <h2>Requirements Used Across This Site</h2>
+          </div>
+        </div>
+        <div class="requirement-highlight-grid">
+          <article>
+            <strong>SYS-6.1</strong>
+            <h3>Share information across systems</h3>
+            <p>PICKS needs to move useful information between ERP, Workday, inventory, and lab systems.</p>
+          </article>
+          <article>
+            <strong>SYS-6.2</strong>
+            <h3>Find purchasing and inventory data</h3>
+            <p>PICKS needs to pull part, asset, purchasing, and inventory information from the ERP.</p>
+          </article>
+          <article>
+            <strong>SYS-6.3</strong>
+            <h3>Keep inventory status aligned</h3>
+            <p>Connected systems should agree on item availability, asset status, and material state.</p>
+          </article>
+          <article>
+            <strong>SYS-6.4</strong>
+            <h3>Keep working during outages</h3>
+            <p>Workflow execution should continue when an enterprise system is temporarily unavailable.</p>
+          </article>
+          <article>
+            <strong>SYS-6.5</strong>
+            <h3>Protect shared information</h3>
+            <p>Information exchanged between people and systems must be protected.</p>
+          </article>
+          <article>
+            <strong>SYS-7.1</strong>
+            <h3>Guide the user</h3>
+            <p>PICKS should help users understand what to do during the work process.</p>
+          </article>
+          <article>
+            <strong>3.4.1</strong>
+            <h3>Check permission first</h3>
+            <p>Users should be prevented from making changes they are not allowed to make.</p>
+          </article>
+          <article>
+            <strong>5.6.2.1</strong>
+            <h3>Keep an activity record</h3>
+            <p>Important activity should be recorded for review, troubleshooting, and compliance evidence.</p>
+          </article>
+          <article>
+            <strong>5.2.1</strong>
+            <h3>Bring in outside data</h3>
+            <p>PICKS should use information from connected enterprise and lab systems.</p>
+          </article>
+          <article>
+            <strong>5.3.1.1</strong>
+            <h3>Translate data between systems</h3>
+            <p>Outside data should be mapped into a format the receiving system can use.</p>
+          </article>
+          <article>
+            <strong>5.4.1.1</strong>
+            <h3>Support receiving work</h3>
+            <p>Connected information should support receiving and inventory updates.</p>
+          </article>
+          <article>
+            <strong>3.3.4</strong>
+            <h3>Keep part history connected</h3>
+            <p>Part, project, and lab history should remain connected across systems.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="requirements-section requirements-priority" data-aos="fade-up">
+        <div>
+          <p class="eyebrow">Prioritization</p>
+          <h2>How the team thought about priority</h2>
+          <p>Requirements were evaluated using mission alignment, MVP operational criticality, and complexity penalty. This keeps the final architecture focused on high-value capabilities while recognizing integration and implementation difficulty.</p>
+        </div>
+        <div class="priority-grid">
+          <article>
+            <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
+            <strong>Mission Alignment</strong>
+            <span>Does it support visibility, traceability, compliance, and standardized workflows?</span>
+          </article>
+          <article>
+            <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+            <strong>MVP Criticality</strong>
+            <span>Is it needed for core receiving, inventory, kitting, or lifecycle work?</span>
+          </article>
+          <article>
+            <i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>
+            <strong>Complexity Penalty</strong>
+            <span>Does it introduce integration, development, or adoption difficulty?</span>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/ui.js"></script>
+</body>
+</html>

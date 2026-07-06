@@ -236,7 +236,9 @@ const payloadSamples = {
         user: "u-1042",
         systemsTouched: ["RBAC_POLICY_SERVICE", "ORACLE_ERP", "WORKDAY", "PEDYN_LEGACY", "MES_CANDIDATE"],
         decisionOutcome: "ALLOW_AND_SYNC_SUCCESS",
-        auditTags: ["SYS-6.5", "5.6.2.1"]
+        auditCategory: "INTEGRATION_EVENT",
+        controlArea: "ACCESS_AND_TRACEABILITY",
+        retentionClass: "COMPLIANCE_REVIEW"
       }
     }
   }

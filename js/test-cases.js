@@ -144,6 +144,11 @@ const testDetailList = document.querySelector("#testDetailList");
 const testRefinementGrid = document.querySelector("#testRefinementGrid");
 const filterButtons = [...document.querySelectorAll(".test-filter")];
 
+function formatRequirement(requirement) {
+  const [id, ...labelParts] = requirement.split(" ");
+  return `<span><b>${id}</b>${labelParts.join(" ")}</span>`;
+}
+
 function renderTestCards(filter = "all") {
   const visibleCases = filter === "all" ? testCases : testCases.filter((testCase) => testCase.category === filter);
   testCaseGrid.innerHTML = visibleCases.map((testCase, index) => `
@@ -168,7 +173,7 @@ testDetailList.innerHTML = detailedTests.map((test) => `
       <div class="test-confirm-grid">
         ${test.confirms.map((item) => `<span><i class="fa-solid fa-check" aria-hidden="true"></i>${item}</span>`).join("")}
       </div>
-      <div class="mini-pills">${test.requirements.map((requirement) => `<span>${requirement}</span>`).join("")}</div>
+      <div class="mini-pills test-requirement-pills">${test.requirements.map(formatRequirement).join("")}</div>
     </div>
   </article>
 `).join("");

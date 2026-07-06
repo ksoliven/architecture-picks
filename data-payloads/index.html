@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PICKS Data Payloads</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/picks-favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="../assets/picks-favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="page-header">
+      <div class="brand-lockup">
+        <div class="logo-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div>
+          <p class="eyebrow">PICKS Presentation</p>
+          <h1>Data Payloads</h1>
+          <p class="subtitle">Plain-English view of the information PICKS sends, receives, checks, and records across connected systems.</p>
+        </div>
+      </div>
+      <nav class="page-nav" aria-label="Architecture views">
+        <a class="nav-link" href="../"><i class="fa-solid fa-house" aria-hidden="true"></i>Home</a>
+        <a class="nav-link" href="../background/"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Background</a>
+        <a class="nav-link" href="../requirements/"><i class="fa-solid fa-list-check" aria-hidden="true"></i>Requirements</a>
+        <a class="nav-link" href="../interview-findings/"><i class="fa-solid fa-comments" aria-hidden="true"></i>Interview Findings</a>
+        <a class="nav-link" href="../baseline/"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>Current Flow</a>
+        <a class="nav-link" href="../trade-study/"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>Compare Options</a>
+        <a class="nav-link" href="../what-if/"><i class="fa-solid fa-code-branch" aria-hidden="true"></i>What-if</a>
+        <a class="nav-link" href="../system-design/"><i class="fa-solid fa-cubes" aria-hidden="true"></i>System Layout</a>
+        <a class="nav-link active" href="../data-payloads/"><i class="fa-solid fa-database" aria-hidden="true"></i>Data Payloads</a>
+        <a class="nav-link" href="../test-cases/"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>Test Cases</a>
+        <a class="nav-link" href="../final-recommendation/"><i class="fa-solid fa-bullseye" aria-hidden="true"></i>Final Recommendation</a>
+        <a class="nav-link" href="../final-materials/"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Final Materials</a>
+        <a class="nav-link" href="../acronyms/"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Acronyms</a>
+      </nav>
+    </header>
+
+    <main class="payload-layout">
+      <section class="payload-hero" data-aos="fade-up">
+        <div>
+          <p class="eyebrow">Information Reference</p>
+          <h2>What Information Moves Through PICKS</h2>
+          <p>This page shows each information exchange in business terms. Technical examples are still available in the popups for anyone who wants to see the behind-the-scenes format.</p>
+        </div>
+        <div class="payload-hero-metrics" aria-label="Payload summary">
+          <article><strong>12</strong><span>exchanges</span></article>
+          <article><strong>7</strong><span>systems</span></article>
+          <article><strong>3</strong><span>connection options</span></article>
+        </div>
+      </section>
+
+      <section class="payload-section" data-aos="fade-up">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Connection Choices</p>
+            <h2>Ways PICKS Can Connect Systems</h2>
+          </div>
+        </div>
+        <div class="api-option-grid">
+          <article class="api-option-card">
+            <i class="fa-solid fa-network-wired" aria-hidden="true"></i>
+            <strong>MuleSoft</strong>
+            <p>Best fit when the organization needs strong oversight, reusable system connections, and long-term management.</p>
+            <div class="mini-pills"><span>Strong oversight</span><span>Strong data matching</span><span>Higher cost</span></div>
+          </article>
+          <article class="api-option-card">
+            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+            <strong>Boomi</strong>
+            <p>Best fit when the team needs to connect systems quickly and test work processes with less custom coding.</p>
+            <div class="mini-pills"><span>Fast setup</span><span>Very strong data matching</span><span>Easier upkeep</span></div>
+          </article>
+          <article class="api-option-card">
+            <i class="fa-solid fa-code" aria-hidden="true"></i>
+            <strong>Custom API Gateway</strong>
+            <p>Best fit when the team needs full control and has enough technical capacity to build and maintain it.</p>
+            <div class="mini-pills"><span>High control</span><span>Strong security</span><span>More upkeep</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="payload-section" data-aos="fade-up">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Exchange Results</p>
+            <h2>What the System Reports Back</h2>
+          </div>
+        </div>
+        <div class="response-code-grid">
+          <article class="response-code-card success">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <strong>Success</strong>
+            <p>The request worked. The information was found, saved, updated, or shared correctly. <span>200 / 201</span></p>
+          </article>
+          <article class="response-code-card warning">
+            <i class="fa-solid fa-file-circle-exclamation" aria-hidden="true"></i>
+            <strong>Data Issue</strong>
+            <p>Something required is missing, formatted incorrectly, or does not match the receiving system. <span>400 / 422</span></p>
+          </article>
+          <article class="response-code-card blocked">
+            <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+            <strong>Access Blocked</strong>
+            <p>The person, service account, or role is not allowed to complete this exchange. <span>401 / 403</span></p>
+          </article>
+          <article class="response-code-card unavailable">
+            <i class="fa-solid fa-code-compare" aria-hidden="true"></i>
+            <strong>Record Mismatch</strong>
+            <p>The record was not found, is duplicated, or conflicts with newer information. <span>404 / 409</span></p>
+          </article>
+          <article class="response-code-card danger">
+            <i class="fa-solid fa-server" aria-hidden="true"></i>
+            <strong>System Unavailable</strong>
+            <p>One of the connected systems is down or failed while processing the exchange. <span>500 / 503</span></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="payload-section" data-aos="fade-up">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Information Inventory</p>
+            <h2>What PICKS Sends and Receives</h2>
+          </div>
+        </div>
+        <div class="payload-table-wrap">
+          <table class="payload-table">
+            <thead>
+              <tr>
+                <th>Step</th>
+                <th>Exchange</th>
+                <th>Action</th>
+                <th>Information Included</th>
+                <th>How PICKS Handles It</th>
+                <th>Purpose</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>01</td>
+                <td>User to Access Rules<br><strong>Ask to Take Action</strong></td>
+                <td><span class="direction-chip request">Ask</span></td>
+                <td>User identity, requested action, target system</td>
+                <td>Checks who the user is and whether they are allowed to take the action.</td>
+                <td>Protects shared information</td>
+                <td><button class="json-button" type="button" data-payload="requestAction"><i class="fa-solid fa-code" aria-hidden="true"></i>View Example</button></td>
+              </tr>
+              <tr>
+                <td>02</td>
+                <td>Access Rules to User<br><strong>Approve or Block Action</strong></td>
+                <td><span class="direction-chip response">Reply</span></td>
+                <td>Role match, allowed permission, session decision</td>
+                <td>Gives a clear yes or no decision and keeps the decision for review history.</td>
+                <td>Keeps a reviewable decision record</td>
+                <td><button class="json-button" type="button" data-payload="authorizationGranted"><i class="fa-solid fa-code" aria-hidden="true"></i>View Example</button></td>
+              </tr>
+              <tr>
+                <td>03</td>
+                <td>User to Connection Hub<br><strong>Send Approved Request</strong></td>
+                <td><span class="direction-chip request">Send</span></td>
+                <td>Approved request, part number, build list or work context</td>
+                <td>Organizes the request before sending it to finance, ERP, or MES systems.</td>
+                <td>Starts the approved work process</td>
+                <td><button class="json-button" type="button" data-payload="submitRequest"><i class="fa-solid fa-code" aria-hidden="true"></i>View Example</button></td>
+              </tr>
+              <tr>
+                <td>04</td>
+                <td>Connection Hub to Oracle ERP<br><strong>Ask for Purchasing and Inventory Data</strong></td>
+                <td><span class="direction-chip request">Ask</span></td>
+                <td>Purchasing lookup, inventory lookup, asset identifier</td>
+                <td>Looks up purchasing, inventory, and asset information from the ERP system.</td>
+                <td>Finds purchasing and inventory data</td>
+                <td><button class="json-button" type="button" data-payload="requestErpData"><i class="fa-solid fa-code" aria-hidden="true"></i>View Example</button></td>
+              </tr>
+              <tr>
+                <td>05</td>
+                <td>Oracle ERP to Connection Hub<br><strong>Return Purchasing and Inventory Data</strong></td>
+                <td><span class="direction-chip response">Reply</span></td>
+                <td>Purchase order, vendor, part number, quantity, inventory status</td>
+                <td>Converts ERP fields into a common PICKS format before other systems use them.</td>
+                <td>Turns business data into usable PICKS information</td>
+                <td><button class="json-button" type="button" data-payload="erpData"><i class="fa-solid fa-code" aria-hidden="true"></i>View Example</button></td>
+              </tr>
+              <tr>
+                <td>06</td>
+                <td>Connection Hub to Workday<br><strong>Ask for Funding Information</strong></td>
+                <td><span class="direction-chip request">Ask</span></td>
+                <td>Project account, cost object, funding reference</td>
+                <td>Checks project and funding context without mixing finance data into lab records.</td>
+                <td>Adds funding context</td>
+                <td><button class="json-button" type="button" data-payload="requestFinancialData"><i class="fa-solid fa-code" aria-hidden="true"></i>View Example</button></td>
+              </tr>
+              <tr>
+                <td>07</td>
+                <td>Workday to Connection Hub<br><strong>Return Funding Information</strong></td>
+                <td><span class="direction-chip response">Reply</span></td>
+                <td>Funding status, financial reference, project cost data</td>
+                <td>Adds funding context to the transaction while inventory remains managed elsewhere.</td>
+                <td>Keeps funding context connected to the request</td>
+                <td><button class="json-button" type="button" data-payload="financialData"><i class="fa-solid fa-code" aria-hidden="true"></i>View Example</button></td>
+              </tr>
+              <tr>
+                <td>08</td>
+                <td>Connection Hub to PEDYN<br><strong>Ask for Existing Lab Data</strong></td>
+                <td><span class="direction-chip request">Ask</span></td>
+                <td>Part number, build identifier, lab record lookup</td>
+                <td>Finds older lab records while protecting the rest of PICKS from inconsistent older data.</td>
+                <td>Finds older lab history</td>
+                <td><button class="json-button" type="button" data-payload="requestLegacyData"><i class="fa-solid fa-code" aria-hidden="true"></i>View Example</button></td>
+              </tr>
+              <tr>
+                <td>09</td>
+                <td>PEDYN to Connection Hub<br><strong>Return Existing Lab Data</strong></td>
+                <td><span class="direction-chip response">Reply</span></td>
+                <td>Older part record, build history, lab status</td>
+                <td>Turns older lab information into a connected format that modern systems can use.</td>
+                <td>Keeps older lab history connected</td>
+                <td><button class="json-button" type="button" data-payload="legacyData"><i class="fa-solid fa-code" aria-hidden="true"></i>View Example</button></td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>Connection Hub to MES<br><strong>Create or Update Lab Record</strong></td>
+                <td><span class="direction-chip request">Send</span></td>
+                <td>Mapped item record, inventory update, operation status, trace link</td>
+                <td>Sends the cleaned record to the MES so the operational record can be created or updated.</td>
+                <td>Updates lab and inventory work</td>
+                <td><button class="json-button" type="button" data-payload="createUpdateRecord"><i class="fa-solid fa-code" aria-hidden="true"></i>View Example</button></td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>MES to Connection Hub<br><strong>Confirm Update Status</strong></td>
+                <td><span class="direction-chip response">Reply</span></td>
+                <td>Update result, lab record ID, sharing status</td>
+                <td>Confirms whether the update worked and gives PICKS a status it can track.</td>
+                <td>Confirms the update result</td>
+                <td><button class="json-button" type="button" data-payload="statusConfirmation"><i class="fa-solid fa-code" aria-hidden="true"></i>View Example</button></td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>Connection Hub to Activity Record<br><strong>Record What Happened</strong></td>
+                <td><span class="direction-chip request">Record</span></td>
+                <td>Transaction ID, user, systems touched, timestamp, decision outcome</td>
+                <td>Saves a connected activity record for review, troubleshooting, and compliance evidence.</td>
+                <td>Keeps an activity record</td>
+                <td><button class="json-button" type="button" data-payload="logActivity"><i class="fa-solid fa-code" aria-hidden="true"></i>View Example</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/payloads.js"></script>
+</body>
+</html>

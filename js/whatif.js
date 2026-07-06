@@ -4,7 +4,7 @@ const scenarioOptions = {
       name: "Workday",
       icon: "fa-coins",
       role: "ERP source",
-      color: "#22c55e",
+      color: "#4b5563",
       data: ["purchasing status", "financial data", "inventory availability"],
       implication: "Workday becomes the main ERP source, so fewer separate Oracle purchasing calls are needed."
     },
@@ -12,7 +12,7 @@ const scenarioOptions = {
       name: "Oracle ERP",
       icon: "fa-building-columns",
       role: "ERP source",
-      color: "#06b6d4",
+      color: "#857437",
       data: ["purchase orders", "vendor data", "inventory records"],
       implication: "Oracle remains the main source for purchasing and inventory, while Workday provides funding context."
     }
@@ -22,14 +22,14 @@ const scenarioOptions = {
       name: "MuleSoft",
       icon: "fa-network-wired",
       role: "Managed iPaaS",
-      color: "#f97316",
+      color: "#004f9f",
       strength: "Best fit when PICKS needs strong oversight, reusable connections, and long-term management."
     },
     boomi: {
       name: "Boomi",
       icon: "fa-bolt",
       role: "Low-code iPaaS",
-      color: "#f59e0b",
+      color: "#b3a369",
       strength: "Best fit when the team needs to connect systems quickly with less custom coding."
     },
     api: {
@@ -52,16 +52,16 @@ const scenarioOptions = {
       name: "Tulip",
       icon: "fa-table-cells-large",
       role: "Commercial MES",
-      color: "#ef4444",
+      color: "#003057",
       implication: "Stronger operator work processes and usability, but higher cost and more reliance on the vendor."
     }
   }
 };
 
 const baseParticipants = [
-  { id: "user", name: "User", icon: "fa-user", color: "#d946ef", role: "Requester" },
-  { id: "rbac", name: "Access Rules", icon: "fa-shield-halved", color: "#14b8a6", role: "Approves actions" },
-  { id: "pedyn", name: "PEDYN Lab History", icon: "fa-database", color: "#8b5cf6", role: "Older lab records" }
+  { id: "user", name: "User", icon: "fa-user", color: "#b3a369", role: "Requester" },
+  { id: "rbac", name: "Access Rules", icon: "fa-shield-halved", color: "#003057", role: "Approves actions" },
+  { id: "pedyn", name: "PEDYN Lab History", icon: "fa-database", color: "#64748b", role: "Older lab records" }
 ];
 
 const controls = {

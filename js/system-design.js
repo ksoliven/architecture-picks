@@ -57,7 +57,7 @@ const systemDetails = {
       { name: "PEDYN / Older Lab Tools", icon: "fa-database", purpose: "Provides existing lab records that must remain visible during transition.", interface: "Older lab data adapter", data: "Older part ID, lab status, historical transaction", quality: "Preserves continuity while PICKS modernizes work processes." }
     ],
     measures: ["Exchange success rate", "Data issue count", "Connection speed"],
-    interfaces: ["Information examples", "Connection hub", "Activity history"]
+    interfaces: ["Data Payloads", "Connection hub", "Activity history"]
   }
 };
 

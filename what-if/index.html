@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PICKS What-if Scenarios</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/picks-favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="../assets/picks-favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="page-header">
+      <div class="brand-lockup">
+        <div class="logo-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div>
+          <p class="eyebrow">PICKS Presentation</p>
+          <h1>What-if Scenarios</h1>
+          <p class="subtitle">Compare how the flow changes with different ERP, integration, and MES choices.</p>
+        </div>
+      </div>
+      <nav class="page-nav" aria-label="Architecture views">
+        <a class="nav-link" href="../"><i class="fa-solid fa-house" aria-hidden="true"></i>Home</a>
+        <a class="nav-link" href="../background/"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Background</a>
+        <a class="nav-link" href="../requirements/"><i class="fa-solid fa-list-check" aria-hidden="true"></i>Requirements</a>
+        <a class="nav-link" href="../interview-findings/"><i class="fa-solid fa-comments" aria-hidden="true"></i>Interview Findings</a>
+        <a class="nav-link" href="../baseline/"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>Current Flow</a>
+        <a class="nav-link" href="../trade-study/"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>Compare Options</a>
+        <a class="nav-link active" href="../what-if/"><i class="fa-solid fa-code-branch" aria-hidden="true"></i>What-if</a>
+        <a class="nav-link" href="../system-design/"><i class="fa-solid fa-cubes" aria-hidden="true"></i>System Layout</a>
+        <a class="nav-link" href="../data-payloads/"><i class="fa-solid fa-database" aria-hidden="true"></i>Data Payloads</a>
+        <a class="nav-link" href="../test-cases/"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>Test Cases</a>
+        <a class="nav-link" href="../final-recommendation/"><i class="fa-solid fa-bullseye" aria-hidden="true"></i>Final Recommendation</a>
+        <a class="nav-link" href="../final-materials/"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Final Materials</a>
+        <a class="nav-link" href="../acronyms/"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Acronyms</a>
+      </nav>
+    </header>
+
+    <main class="whatif-layout">
+      <section class="scenario-panel" data-aos="fade-up">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Scenario Builder</p>
+            <h2>Choices to Compare</h2>
+          </div>
+        </div>
+        <div class="scenario-controls">
+          <label>
+            <span><i class="fa-solid fa-building-columns" aria-hidden="true"></i>ERP source</span>
+            <select id="enterpriseSelect">
+              <option value="workday">Workday primary</option>
+              <option value="oracle">Oracle primary</option>
+            </select>
+          </label>
+          <label>
+            <span><i class="fa-solid fa-network-wired" aria-hidden="true"></i>Integration layer</span>
+            <select id="integrationSelect">
+              <option value="mulesoft">MuleSoft</option>
+              <option value="boomi">Boomi</option>
+              <option value="api">Custom API Gateway</option>
+            </select>
+          </label>
+          <label>
+            <span><i class="fa-solid fa-industry" aria-hidden="true"></i>MES option</span>
+            <select id="mesSelect">
+              <option value="opensource">Open-source MES</option>
+              <option value="tulip">Tulip</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="scenario-summary" id="scenarioSummary" aria-live="polite" data-aos="fade-up"></section>
+
+      <section class="diagram-panel whatif-diagram-panel" aria-label="What-if architecture diagram" data-aos="fade-up">
+        <div class="diagram-toolbar">
+          <div class="filter-control">
+            <label class="select-label" for="scenarioStepSelect">Focus step</label>
+            <select id="scenarioStepSelect"></select>
+          </div>
+          <div class="toolbar-actions">
+            <button class="control-button" type="button" id="whatifPlayPause"><i class="fa-solid fa-pause" aria-hidden="true"></i>Pause</button>
+            <button class="control-button" type="button" id="whatifReplay"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i>Replay</button>
+          </div>
+          <div class="legend" id="whatifLegend" aria-label="What-if color legend"></div>
+        </div>
+        <svg id="whatifDiagram" class="sequence-diagram" viewBox="0 0 1780 900" role="img" aria-labelledby="whatifTitle">
+          <title id="whatifTitle">PICKS what-if information flow</title>
+          <defs>
+            <marker id="whatifArrowHead" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" class="arrow-fill"></path>
+            </marker>
+          </defs>
+          <g id="whatifParticipants"></g>
+          <g id="whatifMessages"></g>
+          <g id="whatifPacket"></g>
+        </svg>
+      </section>
+
+      <section class="timeline-panel whatif-flow-panel" data-aos="fade-up">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Flow Impact</p>
+            <h2>What Changes in the Flow</h2>
+          </div>
+        </div>
+        <div class="impact-grid" id="impactGrid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../js/whatif.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="../js/ui.js"></script>
+</body>
+</html>
