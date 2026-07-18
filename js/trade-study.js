@@ -5,15 +5,15 @@ const tradeStudies = {
     title: "Oracle ERP Options",
     recommendation: "Current direction: Oracle ecosystem",
     criteria: [
-      "Purchasing Support",
-      "Supply Chain Support",
+      "Procurement Management",
+      "Supply Chain Management",
       "Manufacturing Support",
-      "Connection Fit",
-      "Access Control",
-      "Activity History",
+      "Integration Capability",
+      "Security / RBAC",
+      "Auditability",
       "Reporting & Analytics",
-      "Growth Capacity",
-      "Setup Complexity",
+      "Scalability",
+      "Implementation Complexity",
       "Cost"
     ],
     options: [
@@ -21,7 +21,7 @@ const tradeStudies = {
         name: "Oracle NetSuite",
         type: "Lower-complexity ERP option",
         summary: "Better fit when lower setup complexity and cost control matter most, while still covering production, inventory, supply chain, and purchasing needs.",
-        ratings: ["Strong", "Moderate", "Strong", "Strong", "Strong", "Strong", "Strong", "Strong", "Lower", "Lower"],
+        ratings: ["Strong", "Moderate", "Moderate", "Strong", "Strong", "Strong", "Strong", "Strong", "Lower", "Lower"],
         sourceUrl: "https://www.netsuite.com/portal/products/erp.shtml",
         sourceLabel: "NetSuite product page"
       },
@@ -146,9 +146,9 @@ const priorityProfiles = {
       "FedRAMP / Security Fit": 1.9,
       "Access Control": 1.5,
       "Security Controls": 1.7,
-      "Activity History": 1.5,
-      "Growth Capacity": 1.4,
-      "Connection Fit": 1.3,
+      "Auditability": 1.5,
+      "Scalability": 1.4,
+      "Integration Capability": 1.3,
       "Oracle Connection": 1.3,
       "Workday Integration": 1.4,
       "Systems Integration": 1.3
@@ -162,7 +162,7 @@ const priorityProfiles = {
       "BOM Management": 1.4,
       "Asset Tracking": 1.4,
       "Older Data Support": 1.3,
-      "Activity History": 1.4
+      "Auditability": 1.4
     }
   }
 };
@@ -261,7 +261,7 @@ function optionRisks(study, option) {
 }
 
 function shouldHighlightRating(study, criteria, rating) {
-  if (study.label === "ERP" && criteria === "Purchasing Support") {
+  if (study.label === "ERP" && criteria === "Procurement Management") {
     return rating === "Very Strong";
   }
 
