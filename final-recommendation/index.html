@@ -30,7 +30,7 @@
         <a class="nav-link" href="../background/"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Background</a>
         <a class="nav-link" href="../requirements/"><i class="fa-solid fa-list-check" aria-hidden="true"></i>Requirements</a>
         <a class="nav-link" href="../interview-findings/"><i class="fa-solid fa-comments" aria-hidden="true"></i>Interview Findings</a>
-        <a class="nav-link" href="../baseline/"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>Current Flow</a>
+        <a class="nav-link" href="../baseline/"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>Integration Flow</a>
         <a class="nav-link" href="../trade-study/"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>Compare Options</a>
         <a class="nav-link" href="../what-if/"><i class="fa-solid fa-code-branch" aria-hidden="true"></i>What-if</a>
         <a class="nav-link" href="../system-design/"><i class="fa-solid fa-cubes" aria-hidden="true"></i>System Layout</a>
@@ -46,12 +46,12 @@
       <section class="recommendation-hero" data-aos="fade-up">
         <div>
           <p class="eyebrow">Recommended Path</p>
-          <h2>Build PICKS as a hybrid architecture around governance, integration, and adoption.</h2>
-          <p>PICKS should not duplicate future ERP or MES functionality. It should connect lab workflows, legacy data, governance controls, and enterprise records so GTRI can improve traceability without forcing a single disruptive replacement.</p>
+          <h2>Build PICKS as a modular architecture around a centralized Integration Layer.</h2>
+          <p>PICKS should not duplicate future ERP or MES functionality. It should coordinate logistics, lab execution, program management, governance, and external systems through a controlled integration layer so GTRI can improve traceability without forcing a single disruptive replacement.</p>
         </div>
         <div class="recommendation-summary" aria-label="Recommendation summary">
           <article>
-            <strong>Hybrid</strong>
+            <strong>Modular</strong>
             <span>Architecture direction</span>
           </article>
           <article>
@@ -71,7 +71,7 @@
             <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
             <span>Recommended Path</span>
             <h3>Integrate instead of replacing everything.</h3>
-            <p>Keep useful existing systems, add a governance and RBAC layer, modernize key workflows, and connect to future ERP and MES choices as they mature.</p>
+            <p>Keep useful existing systems, add governance and RBAC controls, modernize key workflows, and use a centralized Integration Layer to connect Oracle ERP, Workday, PEDYN, and the selected MES.</p>
           </article>
           <article>
             <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
@@ -105,11 +105,11 @@
         <div class="recommendation-evidence">
           <article>
             <h3>USG ERP dependency</h3>
-            <p>The slide deck shows that future ERP decisions affect PICKS. The architecture should stay flexible enough to connect with Oracle, Workday, and approved enterprise systems without recreating them.</p>
+            <p>Oracle has been identified as the preferred ERP direction, but the final NetSuite or Fusion platform choice remains dependent on organizational, cybersecurity, hosting, and integration requirements.</p>
           </article>
           <article>
             <h3>Lab adoption risk</h3>
-            <p>Interviews showed fragmented workflows, manual transfer, and legacy usability problems. A phased hybrid approach lets GTRI improve high-value workflows without forcing every lab to change at once.</p>
+            <p>Interviews showed fragmented workflows, manual transfer, and legacy usability problems. A phased modular approach lets GTRI improve high-value workflows without forcing every lab to change at once.</p>
           </article>
           <article>
             <h3>Compliance readiness</h3>
@@ -129,17 +129,17 @@
           <article>
             <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
             <h3>USG ERP timeline</h3>
-            <p>The University System of Georgia ERP rollout will affect when PICKS can validate final enterprise interfaces.</p>
+            <p>The University System of Georgia ERP rollout will affect when PICKS can validate final enterprise interfaces and complete full ERP-based V&V.</p>
           </article>
           <article>
             <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
             <h3>Oracle and Workday decisions</h3>
-            <p>Final ERP and finance-system choices will determine exact data fields, integration methods, and synchronization rules.</p>
+            <p>Oracle is the preferred ERP direction for procurement, vendor, inventory, and planning data, while Workday remains the financial and funding data source. Final platform choices will determine exact APIs, data fields, and synchronization rules.</p>
           </article>
           <article>
             <i class="fa-solid fa-industry" aria-hidden="true"></i>
             <h3>MES selection</h3>
-            <p>The selected MES direction will shape inventory updates, work-order behavior, lab execution data, and traceability interfaces.</p>
+            <p>Client feedback currently favors Tulip first because of validated FedRAMP status and potential Workday integration, with Odoo second because of stronger apparent integration and a possible on-prem path. InvenTree should not advance unless its integration and security fit materially improve.</p>
           </article>
           <article>
             <i class="fa-solid fa-database" aria-hidden="true"></i>

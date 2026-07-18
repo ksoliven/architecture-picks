@@ -30,7 +30,7 @@
         <a class="nav-link active" href="../background/"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Background</a>
         <a class="nav-link" href="../requirements/"><i class="fa-solid fa-list-check" aria-hidden="true"></i>Requirements</a>
         <a class="nav-link" href="../interview-findings/"><i class="fa-solid fa-comments" aria-hidden="true"></i>Interview Findings</a>
-        <a class="nav-link" href="../baseline/"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>Current Flow</a>
+        <a class="nav-link" href="../baseline/"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>Integration Flow</a>
         <a class="nav-link" href="../trade-study/"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>Compare Options</a>
         <a class="nav-link" href="../what-if/"><i class="fa-solid fa-code-branch" aria-hidden="true"></i>What-if</a>
         <a class="nav-link" href="../system-design/"><i class="fa-solid fa-cubes" aria-hidden="true"></i>System Layout</a>
@@ -82,6 +82,37 @@
         </article>
       </section>
 
+      <section class="current-state-panel" data-aos="fade-up">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Current State Physical View</p>
+            <h2>How work moves today before the integrated architecture.</h2>
+          </div>
+        </div>
+        <div class="current-state-map compact-current-state-map" aria-label="Current physical system view">
+          <article class="current-state-node people-node">
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+            <span>Request channels</span>
+            <strong>Email, tickets, conversations</strong>
+            <p>Work starts with people and local lab practices.</p>
+          </article>
+          <div class="current-state-connector manual-one" aria-hidden="true"></div>
+          <article class="current-state-node lab-node-current">
+            <i class="fa-solid fa-table-cells" aria-hidden="true"></i>
+            <span>Disconnected tools</span>
+            <strong>Workday, PEDYN, Sunflower, RFTrack, custom tools</strong>
+            <p>Data is copied between systems instead of exchanged through one interface.</p>
+          </article>
+          <div class="current-state-connector manual-two" aria-hidden="true"></div>
+          <article class="current-state-node receiving-node">
+            <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+            <span>Tracking gaps</span>
+            <strong>Manual handoffs and direct delivery</strong>
+            <p>Visibility can break after receiving, delivery, or lab-specific updates.</p>
+          </article>
+        </div>
+      </section>
+
       <section class="background-story" data-aos="fade-up">
         <div class="section-heading">
           <div>
@@ -128,7 +159,7 @@
           <p>Start with the current context, then move into system flow, architecture, examples, verification, and final materials.</p>
         </div>
         <div class="background-path" aria-label="Recommended review path">
-          <a href="../baseline/">Current Flow</a>
+          <a href="../baseline/">Integration Flow</a>
           <a href="../system-design/">System Layout</a>
           <a href="../trade-study/">Compare Options</a>
           <a href="../test-cases/">Test Cases</a>

@@ -30,7 +30,7 @@
         <a class="nav-link" href="../background/"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Background</a>
         <a class="nav-link" href="../requirements/"><i class="fa-solid fa-list-check" aria-hidden="true"></i>Requirements</a>
         <a class="nav-link" href="../interview-findings/"><i class="fa-solid fa-comments" aria-hidden="true"></i>Interview Findings</a>
-        <a class="nav-link" href="../baseline/"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>Current Flow</a>
+        <a class="nav-link" href="../baseline/"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i>Integration Flow</a>
         <a class="nav-link" href="../trade-study/"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>Compare Options</a>
         <a class="nav-link" href="../what-if/"><i class="fa-solid fa-code-branch" aria-hidden="true"></i>What-if</a>
         <a class="nav-link active" href="../system-design/"><i class="fa-solid fa-cubes" aria-hidden="true"></i>System Layout</a>
@@ -73,7 +73,7 @@
             <i class="fa-solid fa-boxes-stacked block-icon" aria-hidden="true"></i>
             <span>Main system</span>
             <h3>PICKS</h3>
-            <p>Helps users see inventory, connect related records, support lab work, check access, and share information with other systems.</p>
+            <p>Uses a centralized Integration Layer to coordinate inventory visibility, lab work, access checks, audit records, and external system data.</p>
           </article>
 
           <button class="clean-block governance-block system-trigger active" type="button" data-system="governance">
@@ -119,11 +119,11 @@
       <section class="clean-bdd-notes" data-aos="fade-up">
         <article>
           <strong>Design Intent</strong>
-          <p>Keep PICKS flexible so GTRI can change ERP, MES, or older data connections without replacing everything.</p>
+          <p>Keep PICKS modular so GTRI can change Oracle ERP, MES, Workday, or older lab tool connections without redesigning the whole architecture.</p>
         </article>
         <article>
           <strong>Primary Information Path</strong>
-          <p>A request is checked, matched with purchasing and funding information, connected to lab history, used for inventory or lab work, and recorded.</p>
+          <p>A request is authorized, routed through the Integration Layer, matched with Oracle purchasing and inventory data, enriched with Workday funding data, connected to lab history, synchronized with the MES, and recorded.</p>
         </article>
         <article>
           <strong>What Matters Most</strong>

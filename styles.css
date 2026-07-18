@@ -2856,6 +2856,7 @@ h1 {
 .details-panel,
 .timeline-panel,
 .trace-panel,
+.current-state-panel,
 .scenario-panel,
 .scenario-card,
 .impact-card,
@@ -2923,6 +2924,115 @@ h1 {
   font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+.current-state-panel {
+  padding: 22px;
+}
+
+.current-state-map {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(rgba(215, 220, 229, 0.24) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(215, 220, 229, 0.24) 1px, transparent 1px),
+    #fbfcfe;
+  background-size: 34px 34px;
+}
+
+.current-state-node {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+  min-height: 134px;
+  border: 2px solid var(--node-color, var(--line));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--node-color, var(--teal)) 8%, #ffffff);
+  padding: 16px;
+}
+
+.current-state-node i {
+  color: var(--node-color, var(--teal));
+  font-size: 22px;
+}
+
+.current-state-node span {
+  color: color-mix(in srgb, var(--node-color, var(--teal)) 78%, #111827);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.current-state-node strong {
+  color: var(--strong-line);
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.current-state-node p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.people-node {
+  --node-color: #b3a369;
+}
+
+.workday-node {
+  --node-color: #4b5563;
+}
+
+.receiving-node {
+  --node-color: #004f9f;
+}
+
+.lab-node-current {
+  --node-color: #0f766e;
+}
+
+.asset-node {
+  --node-color: #857437;
+}
+
+.current-state-connector {
+  position: absolute;
+  top: 86px;
+  height: 2px;
+  border-top: 3px dashed rgba(0, 48, 87, 0.38);
+}
+
+.current-state-connector::after {
+  position: absolute;
+  top: -8px;
+  right: -3px;
+  width: 12px;
+  height: 12px;
+  border-top: 3px solid rgba(0, 48, 87, 0.48);
+  border-right: 3px solid rgba(0, 48, 87, 0.48);
+  content: "";
+  transform: rotate(45deg);
+}
+
+.manual-one {
+  left: calc(33.333% - 10px);
+  width: 3.8%;
+}
+
+.manual-two {
+  left: calc(66.666% - 10px);
+  width: 3.8%;
+}
+
+.manual-three {
+  display: none;
 }
 
 .scenario-card,
@@ -4843,6 +4953,7 @@ select:focus {
   .dependency-grid,
   .flow-hero,
   .flow-hero-metrics,
+  .current-state-map,
   .background-grid,
   .background-timeline,
   .background-next,
@@ -4877,6 +4988,14 @@ select:focus {
   .payload-hero,
   .test-hero {
     grid-template-columns: 1fr;
+  }
+
+  .asset-node {
+    grid-column: auto;
+  }
+
+  .current-state-connector {
+    display: none;
   }
 
   .test-hero-metrics {

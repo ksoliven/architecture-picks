@@ -28,10 +28,10 @@ const testCases = [
     status: "Planned"
   },
   {
-    title: "Verify MES inventory updates",
+    title: "Verify MES and ERP operational functionality",
     category: "Data Exchange",
     icon: "fa-warehouse",
-    purpose: "Confirm that MES inventory changes can be reflected in the enterprise environment.",
+    purpose: "Confirm that BOM, router, receiving, build, inventory, and ERP/MES communication behaviors work together.",
     status: "Planned"
   },
   {
@@ -81,7 +81,7 @@ const detailedTests = [
       "A station cannot close until required steps are complete.",
       "The system rejects an incorrect data type before it moves downstream."
     ],
-    requirements: ["6.2.3 Synchronization Failures", "6.2.2 Inventory records", "1.3.2.2 Configurable Data Fields"]
+    requirements: ["SYS-6.2.3 Synchronization Failures", "SYS-6.2.2 Inventory records", "SYS-1.3.2.2 Configurable Data Fields"]
   },
   {
     title: "End-to-End Traceability",
@@ -92,7 +92,7 @@ const detailedTests = [
       "MES-to-ERP data transfer is visible.",
       "ERP-to-MES data transfer is visible."
     ],
-    requirements: ["1.3.4.1 Router Component ID", "1.3.4.2 BOM Loading", "1.3.2.3 Data Storage", "6.1.1 Retrieve Inventory"]
+    requirements: ["SYS-1.3.4.1 Router Component ID", "SYS-1.3.4.2 BOM Loading", "SYS-1.3.2.3 Data Storage", "SYS-6.1.1 Retrieve Inventory"]
   },
   {
     title: "Vendor Data Mapping",
@@ -103,7 +103,7 @@ const detailedTests = [
       "The integration layer can compare source and target fields.",
       "Missing, unmapped, or unusable vendor data follows a clear fail path."
     ],
-    requirements: ["5.2.1 Data Retrieval", "5.3.1 Autopopulated Fields", "5.3.1.1 Field Mapping", "5.4.1.1 Receiving Interface"]
+    requirements: ["SYS-5.2.1 Data Retrieval", "SYS-5.3.1 Autopopulated Fields", "SYS-5.3.1.1 Field Mapping", "SYS-5.4.1.1 Receiving Interface"]
   },
   {
     title: "Part Number Synchronization",
@@ -114,7 +114,7 @@ const detailedTests = [
       "Mapping rules are validated before synchronization.",
       "Missing or mismatched part numbers follow a clear fail path."
     ],
-    requirements: ["1.2.1.1 Part Number Identification", "1.2.1.2 Part Number Identification Association", "1.2.1.5 Associated Projects", "3.3.4 Component Traceability"]
+    requirements: ["SYS-1.2.1.1 Part Number Identification", "SYS-1.2.1.2 Part Number Identification Association", "SYS-1.2.1.5 Associated Projects", "SYS-3.3.4 Component Traceability"]
   },
   {
     title: "RBAC Enforcement",
@@ -125,18 +125,19 @@ const detailedTests = [
       "Restricted actions are checked before changes are accepted.",
       "Undefined roles or unauthorized changes are blocked and recorded."
     ],
-    requirements: ["3.4.1 Access Control", "5.6.2.1 Audit Subsystem", "1.3.3 Access Control"]
+    requirements: ["SYS-3.4.1 Access Control", "SYS-5.6.2.1 Audit Subsystem", "SYS-1.3.3 Access Control"]
   }
 ];
 
 const refinementSteps = [
-  { icon: "fa-bullseye", text: "Tie each test case to specific requirement IDs and verification objectives." },
-  { icon: "fa-border-all", text: "Confirm system boundaries for ERP, MES, PEDYN, RBAC, and the integration layer." },
-  { icon: "fa-list-check", text: "Define preconditions, inputs, expected outputs, and pass/fail criteria." },
-  { icon: "fa-database", text: "Add representative data such as PO numbers, part numbers, BOMs, quantities, and user roles." },
-  { icon: "fa-code-branch", text: "Separate data errors, interface failures, authorization failures, and workflow failures." },
-  { icon: "fa-comments", text: "Validate test flows with sponsor feedback and final ERP/MES architecture direction." },
-  { icon: "fa-link", text: "Trace each test back to visibility, traceability, kitting, compliance, and interface readiness." }
+  { icon: "fa-bullseye", text: "Current test coverage verifies 128 requirements and leaves 15 requirements dependent on selected-system detail." },
+  { icon: "fa-border-all", text: "System boundaries remain ERP, MES, PEDYN, RBAC, and the Integration Layer." },
+  { icon: "fa-list-check", text: "Each executable test needs clear preconditions, inputs, expected outputs, and pass/fail criteria." },
+  { icon: "fa-database", text: "Representative data should include PO numbers, part numbers, BOMs, quantities, locations, and user roles." },
+  { icon: "fa-code-branch", text: "Failure coverage should distinguish data errors, interface failures, authorization failures, and workflow failures." },
+  { icon: "fa-hourglass-half", text: "Interface readiness and compliance artifact verification should wait for selected systems and data mappings." },
+  { icon: "fa-comments", text: "Final test flows should stay aligned with sponsor feedback and the ERP/MES architecture direction." },
+  { icon: "fa-link", text: "Traceability should remain visible from each test case back to the stakeholder need it verifies." }
 ];
 
 const testCaseGrid = document.querySelector("#testCaseGrid");

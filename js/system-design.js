@@ -11,7 +11,7 @@ const systemDetails = {
       { name: "Policy and Configuration", icon: "fa-sliders", purpose: "Lets rules change by lab, program, or business need.", interface: "Rules settings", data: "Rule version, lab or program scope", quality: "Keeps rules adaptable." }
     ],
     measures: ["System uptime", "Review response time", "Maximum downtime"],
-    interfaces: ["User session", "Connection hub", "Activity history"]
+    interfaces: ["User session", "Integration Layer", "Activity history"]
   },
   lab: {
     title: "Lab / MES System",
@@ -22,7 +22,7 @@ const systemDetails = {
       { name: "Asset Management", icon: "fa-screwdriver-wrench", purpose: "Tracks asset status, use, availability, and repair history.", interface: "Asset status update", data: "Asset ID, use, repair state", quality: "Improves asset visibility." }
     ],
     measures: ["Build history coverage", "Work order completion time", "Asset use"],
-    interfaces: ["Connection hub", "PEDYN lab history", "Inventory records"]
+    interfaces: ["Integration Layer", "PEDYN lab history", "Inventory records"]
   },
   logistics: {
     title: "Logistics System",
@@ -34,7 +34,7 @@ const systemDetails = {
       { name: "Warehousing", icon: "fa-location-dot", purpose: "Tracks where material is stored and moved.", interface: "Location update", data: "Bin, warehouse, movement event", quality: "Improves material visibility." }
     ],
     measures: ["Inventory record accuracy", "Receiving cycle time", "Reconciliation time"],
-    interfaces: ["Oracle ERP", "Connection hub", "Lab / MES"]
+    interfaces: ["Oracle ERP", "Integration Layer", "Lab / MES"]
   },
   program: {
     title: "Program Management System",
@@ -50,14 +50,14 @@ const systemDetails = {
   external: {
     title: "Connected Systems",
     icon: "fa-plug-circle-bolt",
-    description: "Represents outside systems that share finance, purchasing, inventory, and lab history with PICKS.",
+    description: "Represents outside systems that share finance, purchasing, inventory, and lab history through the Integration Layer.",
     subsystems: [
       { name: "Workday", icon: "fa-coins", purpose: "Provides project and funding context for inventory and purchasing activity.", interface: "Funding information", data: "Project, cost center, funding status", quality: "Keeps material activity aligned to financial controls." },
       { name: "Oracle ERP", icon: "fa-building-columns", purpose: "Provides purchase orders, vendor receipts, parts, and inventory records.", interface: "Purchasing and inventory information", data: "Purchase order, receipt, vendor, item master", quality: "Reduces duplicate entry and reconciliation effort." },
       { name: "PEDYN / Older Lab Tools", icon: "fa-database", purpose: "Provides existing lab records that must remain visible during transition.", interface: "Older lab data adapter", data: "Older part ID, lab status, historical transaction", quality: "Preserves continuity while PICKS modernizes work processes." }
     ],
     measures: ["Exchange success rate", "Data issue count", "Connection speed"],
-    interfaces: ["Data Payloads", "Connection hub", "Activity history"]
+    interfaces: ["Data Payloads", "Integration Layer", "Activity history"]
   }
 };
 

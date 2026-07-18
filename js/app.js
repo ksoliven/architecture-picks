@@ -2,11 +2,11 @@ const architecture = {
   participants: [
     { id: "user", name: "User", color: "#b3a369", role: "Requester" },
     { id: "rbac", name: "Access Rules", color: "#003057", role: "Approves actions" },
-    { id: "integration", name: "Integration Layer", color: "#004f9f", role: "Routes information" },
+    { id: "integration", name: "Integration Layer", color: "#004f9f", role: "Coordinates exchange" },
     { id: "oracle", name: "Oracle ERP", color: "#857437", role: "Purchasing" },
     { id: "workday", name: "Workday", color: "#4b5563", role: "Finance" },
     { id: "pedyn", name: "PEDYN Lab History", color: "#64748b", role: "Older lab records" },
-    { id: "mes", name: "Future MES Candidate", color: "#0f766e", role: "Lab execution" }
+    { id: "mes", name: "Selected MES Candidate", color: "#0f766e", role: "Lab execution" }
   ],
   requirements: [
     { id: "SYS-6.1", title: "Share information across systems", description: "PICKS needs to move useful information between ERP, Workday, inventory, and lab systems." },
@@ -15,12 +15,12 @@ const architecture = {
     { id: "SYS-6.4", title: "Keep working during outages", description: "PICKS should continue the work process when another system is temporarily unavailable." },
     { id: "SYS-6.5", title: "Protect shared information", description: "PICKS must protect information as it moves between people and systems." },
     { id: "SYS-7.1", title: "Guide the user", description: "PICKS should help users understand what to do during the work process." },
-    { id: "3.4.1", title: "Check permission first", description: "PICKS should prevent users from making changes they are not allowed to make." },
-    { id: "5.6.2.1", title: "Keep an activity record", description: "PICKS should record important activity for review, troubleshooting, and compliance evidence." },
-    { id: "5.2.1", title: "Bring in outside data", description: "PICKS should be able to use information from connected systems." },
-    { id: "5.3.1.1", title: "Translate data between systems", description: "PICKS should turn outside data into a format the receiving system can use." },
-    { id: "5.4.1.1", title: "Support receiving work", description: "PICKS should use connected information to support receiving and inventory updates." },
-    { id: "3.3.4", title: "Keep part history connected", description: "PICKS should keep part, project, and lab history connected across systems." }
+    { id: "SYS-3.4.1", title: "Check permission first", description: "PICKS should prevent users from making changes they are not allowed to make." },
+    { id: "SYS-5.6.2.1", title: "Keep an activity record", description: "PICKS should record important activity for review, troubleshooting, and compliance evidence." },
+    { id: "SYS-5.2.1", title: "Bring in outside data", description: "PICKS should be able to use information from connected systems." },
+    { id: "SYS-5.3.1.1", title: "Translate data between systems", description: "PICKS should turn outside data into a format the receiving system can use." },
+    { id: "SYS-5.4.1.1", title: "Support receiving work", description: "PICKS should use connected information to support receiving and inventory updates." },
+    { id: "SYS-3.3.4", title: "Keep part history connected", description: "PICKS should keep part, project, and lab history connected across systems." }
   ],
   messages: [
     {
@@ -30,7 +30,7 @@ const architecture = {
       label: "Ask to Take Action",
       direction: "request",
       payload: ["User identity", "Requested action", "Target system"],
-      requirements: ["3.4.1", "SYS-6.5"],
+      requirements: ["SYS-3.4.1", "SYS-6.5"],
       description: "A user starts a task, and PICKS checks the action before ERP, Workday, or lab information is accessed."
     },
     {
@@ -40,7 +40,7 @@ const architecture = {
       label: "Approve or Block Action",
       direction: "response",
       payload: ["User role", "Allowed action", "Decision"],
-      requirements: ["3.4.1", "5.6.2.1"],
+      requirements: ["SYS-3.4.1", "SYS-5.6.2.1"],
       description: "PICKS returns a clear yes or no decision and keeps that decision for later review."
     },
     {
@@ -60,7 +60,7 @@ const architecture = {
       label: "Ask for Purchasing Data",
       direction: "request",
       payload: ["Purchasing lookup", "Inventory lookup", "Asset identifier"],
-      requirements: ["SYS-6.1", "SYS-6.2", "5.2.1"],
+      requirements: ["SYS-6.1", "SYS-6.2", "SYS-5.2.1"],
       description: "The integration layer asks Oracle ERP for purchasing, inventory, and asset information."
     },
     {
@@ -70,7 +70,7 @@ const architecture = {
       label: "Return Purchasing Data",
       direction: "response",
       payload: ["Purchase order", "Vendor", "Part number", "Quantity", "Inventory status"],
-      requirements: ["SYS-6.2", "5.2.1", "5.3.1.1"],
+      requirements: ["SYS-6.2", "SYS-5.2.1", "SYS-5.3.1.1"],
       description: "Oracle returns purchasing and inventory details that PICKS can use in the work process."
     },
     {
@@ -80,7 +80,7 @@ const architecture = {
       label: "Ask for Funding Data",
       direction: "request",
       payload: ["Project account", "Cost object", "Funding reference"],
-      requirements: ["SYS-6.1", "5.2.1"],
+      requirements: ["SYS-6.1", "SYS-5.2.1"],
       description: "The integration layer asks Workday for project and funding context."
     },
     {
@@ -90,7 +90,7 @@ const architecture = {
       label: "Return Funding Data",
       direction: "response",
       payload: ["Funding status", "Financial reference", "Project cost data"],
-      requirements: ["SYS-6.1", "5.2.1", "5.3.1.1"],
+      requirements: ["SYS-6.1", "SYS-5.2.1", "SYS-5.3.1.1"],
       description: "Workday returns funding information so the request has the right business context."
     },
     {
@@ -100,7 +100,7 @@ const architecture = {
       label: "Ask for Existing Lab Data",
       direction: "request",
       payload: ["Part number", "Build identifier", "Lab record lookup"],
-      requirements: ["SYS-6.1", "3.3.4", "5.2.1"],
+      requirements: ["SYS-6.1", "SYS-3.3.4", "SYS-5.2.1"],
       description: "The integration layer asks PEDYN for older lab records that may still matter."
     },
     {
@@ -110,7 +110,7 @@ const architecture = {
       label: "Return Existing Lab Data",
       direction: "response",
       payload: ["Older part record", "Build history", "Lab status"],
-      requirements: ["3.3.4", "5.2.1", "5.3.1.1"],
+      requirements: ["SYS-3.3.4", "SYS-5.2.1", "SYS-5.3.1.1"],
       description: "PEDYN returns existing lab history so PICKS can keep older records connected."
     },
     {
@@ -120,7 +120,7 @@ const architecture = {
       label: "Create or Update Lab Record",
       direction: "request",
       payload: ["Item record", "Inventory update", "Work status", "History link"],
-      requirements: ["SYS-6.3", "5.4.1.1", "3.3.4"],
+      requirements: ["SYS-6.3", "SYS-5.4.1.1", "SYS-3.3.4"],
       description: "The integration layer creates or updates a MES lab record using the information gathered from other systems."
     },
     {
@@ -130,8 +130,8 @@ const architecture = {
       label: "Confirm Update Status",
       direction: "response",
       payload: ["Update result", "MES record ID", "Sharing status"],
-      requirements: ["SYS-6.3", "SYS-6.4", "5.6.2.1"],
-      description: "The future MES candidate confirms whether the record was created or updated."
+      requirements: ["SYS-6.3", "SYS-6.4", "SYS-5.6.2.1"],
+      description: "The selected MES candidate confirms whether the record was created or updated."
     },
     {
       id: "log-activity",
@@ -140,7 +140,7 @@ const architecture = {
       label: "Record What Happened",
       direction: "request",
       payload: ["Transaction ID", "User", "Systems touched", "Timestamp", "Decision outcome"],
-      requirements: ["5.6.2.1", "SYS-6.5"],
+      requirements: ["SYS-5.6.2.1", "SYS-6.5"],
       description: "PICKS records what happened, who was involved, and which systems were touched."
     }
   ]

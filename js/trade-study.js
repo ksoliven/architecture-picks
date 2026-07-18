@@ -39,9 +39,11 @@ const tradeStudies = {
     label: "MES",
     eyebrow: "MES Direction",
     title: "MES Options",
-    recommendation: "Shortlist: InvenTree/open source, Tulip, Oracle Manufacturing Cloud",
+    recommendation: "Client feedback ranking: Tulip first, Odoo second, do not advance InvenTree",
     criteria: [
-      "Oracle Connection",
+      "FedRAMP / Security Fit",
+      "Workday Integration",
+      "Systems Integration",
       "Inventory Management",
       "BOM Management",
       "History Tracking",
@@ -53,44 +55,28 @@ const tradeStudies = {
     ],
     options: [
       {
-        name: "InvenTree",
-        type: "Open-source MES option",
-        summary: "Low cost and low setup complexity with strong inventory, build list, and history tracking support.",
-        ratings: ["Good", "Strong", "Strong", "Strong", "Strong", "Native", "Good", "Low", "Low"],
-        sourceUrl: "https://docs.inventree.org/en/latest/",
-        sourceLabel: "InvenTree docs"
+        name: "Tulip",
+        type: "Recommended MES solution",
+        summary: "Client feedback favors Tulip because it has validated FedRAMP status and appears able to integrate with other systems, including Workday, with some implementation effort.",
+        ratings: ["Very Strong", "Strong", "Very Strong", "Good", "Good", "Strong", "Good", "Advanced", "Strong", "High", "Medium"],
+        sourceUrl: "https://tulip.co/platform/security/",
+        sourceLabel: "Tulip Security"
       },
       {
         name: "Odoo Manufacturing",
-        type: "Open-source modular suite",
-        summary: "Balanced option with strong inventory and build list support, but the broader suite fit still needs validation.",
-        ratings: ["Good", "Strong", "Strong", "Strong", "Strong", "Native", "Good", "Medium", "Medium"],
+        type: "Strong alternative MES candidate",
+        summary: "Client feedback places Odoo second because it appears to have better Workday and systems integration than other open-source options. It lacks FedRAMP authorization, but an on-prem option may reduce deployment risk.",
+        ratings: ["Moderate", "Very Good", "Strong", "Strong", "Strong", "Strong", "Good", "Advanced", "Good", "Medium", "Medium"],
         sourceUrl: "https://www.odoo.com/app/inventory",
         sourceLabel: "Odoo Inventory"
       },
       {
-        name: "Ignition MES",
-        type: "Commercial MES",
-        summary: "Strong connection and history tracking support, but higher cost and setup complexity.",
-        ratings: ["Very Good", "Moderate", "Moderate", "Strong", "Strong", "Advanced", "Very Good", "High", "High"],
-        sourceUrl: "https://www.sepasoft.com/products/",
-        sourceLabel: "Sepasoft MES"
-      },
-      {
-        name: "Tulip",
-        type: "Commercial frontline operations platform",
-        summary: "Strong system-connection and operator work-process potential with medium setup complexity.",
-        ratings: ["Very Good", "Moderate", "Moderate", "Strong", "Moderate", "Advanced", "Very Strong", "High", "Medium"],
-        sourceUrl: "https://support.tulip.co/docs/connectors",
-        sourceLabel: "Tulip Connectors"
-      },
-      {
-        name: "Oracle Manufacturing Cloud",
-        type: "Oracle-aligned MES direction",
-        summary: "Strong Oracle alignment and capability, but highest cost profile.",
-        ratings: ["Native", "Strong", "Strong", "Strong", "Strong", "Advanced", "Moderate", "Very High", "High"],
-        sourceUrl: "https://www.oracle.com/scm/manufacturing/",
-        sourceLabel: "Oracle Manufacturing"
+        name: "InvenTree",
+        type: "Not recommended for next phase",
+        summary: "Client feedback does not identify enough additional value beyond current tools. InvenTree appears to have less mature integration mapping and the least desirable security posture for supported projects.",
+        ratings: ["Weak", "Limited", "Limited", "Strong", "Strong", "Strong", "Good", "Moderate", "Limited", "Low", "High"],
+        sourceUrl: "https://docs.inventree.org/en/latest/",
+        sourceLabel: "InvenTree docs"
       }
     ]
   },
@@ -157,12 +143,15 @@ const priorityProfiles = {
     label: "Oversight and security",
     weights: {
       "Oversight": 1.8,
+      "FedRAMP / Security Fit": 1.9,
       "Access Control": 1.5,
       "Security Controls": 1.7,
       "Activity History": 1.5,
       "Growth Capacity": 1.4,
       "Connection Fit": 1.3,
-      "Oracle Connection": 1.3
+      "Oracle Connection": 1.3,
+      "Workday Integration": 1.4,
+      "Systems Integration": 1.3
     }
   },
   traceability: {
@@ -188,6 +177,8 @@ const scoreMap = {
   "Advanced": 4,
   "Medium": 3,
   "Moderate": 2,
+  "Limited": 2,
+  "Weak": 1,
   "Low": 5,
   "Lower": 5,
   "High": 2,

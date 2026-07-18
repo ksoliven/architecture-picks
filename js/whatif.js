@@ -41,19 +41,26 @@ const scenarioOptions = {
     }
   },
   mes: {
-    opensource: {
-      name: "Open-source MES",
-      icon: "fa-industry",
-      role: "InvenTree / Odoo style",
-      color: "#0f766e",
-      implication: "Lower cost and more flexibility, but more setup work is needed for permissions, data matching, and support."
-    },
     tulip: {
       name: "Tulip",
       icon: "fa-table-cells-large",
-      role: "Commercial MES",
+      role: "Recommended MES",
       color: "#003057",
-      implication: "Stronger operator work processes and usability, but higher cost and more reliance on the vendor."
+      implication: "Client feedback favors Tulip because of validated FedRAMP status and potential integration with Workday and other systems."
+    },
+    odoo: {
+      name: "Odoo Manufacturing",
+      icon: "fa-industry",
+      role: "Strong alternative",
+      color: "#0f766e",
+      implication: "Client feedback places Odoo second because it appears to have stronger Workday and system integration, with on-prem deployment as a possible path despite lacking FedRAMP authorization."
+    },
+    inventree: {
+      name: "InvenTree",
+      icon: "fa-boxes-stacked",
+      role: "Not recommended",
+      color: "#64748b",
+      implication: "Client feedback does not identify enough added value beyond current tools, and flags weaker integration maturity and security fit."
     }
   }
 };
@@ -113,12 +120,12 @@ const requirementLabels = {
   "SYS-6.4": "Keep working during outages",
   "SYS-6.5": "Protect shared information",
   "SYS-7.1": "Guide the user",
-  "3.4.1": "Check permission first",
-  "5.6.2.1": "Keep an activity record",
-  "5.2.1": "Bring in outside data",
-  "5.3.1.1": "Translate data between systems",
-  "5.4.1.1": "Support receiving work",
-  "3.3.4": "Keep part history connected"
+  "SYS-3.4.1": "Check permission first",
+  "SYS-5.6.2.1": "Keep an activity record",
+  "SYS-5.2.1": "Bring in outside data",
+  "SYS-5.3.1.1": "Translate data between systems",
+  "SYS-5.4.1.1": "Support receiving work",
+  "SYS-3.3.4": "Keep part history connected"
 };
 
 const choiceControls = {};
@@ -188,7 +195,7 @@ function scenarioMessages(scenario) {
       label: "Ask to Take Action",
       direction: "request",
       note: "Same as the current flow: PICKS checks the user before information moves.",
-      requirements: ["3.4.1", "SYS-6.5"]
+      requirements: ["SYS-3.4.1", "SYS-6.5"]
     },
     {
       from: "rbac",
@@ -196,7 +203,7 @@ function scenarioMessages(scenario) {
       label: "Approve or Block Action",
       direction: "response",
       note: "Same as the current flow: PICKS gives a clear yes or no decision before the request continues.",
-      requirements: ["3.4.1", "5.6.2.1"]
+      requirements: ["SYS-3.4.1", "SYS-5.6.2.1"]
     },
     {
       from: "user",
@@ -212,7 +219,7 @@ function scenarioMessages(scenario) {
       label: "Ask for Business Data",
       direction: "request",
       note: `The request now goes to ${scenario.enterprise.name} for ${businessData}.`,
-      requirements: ["SYS-6.1", "SYS-6.2", "5.2.1"]
+      requirements: ["SYS-6.1", "SYS-6.2", "SYS-5.2.1"]
     },
     {
       from: "enterprise",
@@ -220,7 +227,7 @@ function scenarioMessages(scenario) {
       label: "Return Business Data",
       direction: "response",
       note: `${scenario.enterprise.name} returns purchasing, funding, or inventory details for PICKS.`,
-      requirements: ["SYS-6.2", "5.3.1.1"]
+      requirements: ["SYS-6.2", "SYS-5.3.1.1"]
     },
     {
       from: "integration",
@@ -228,7 +235,7 @@ function scenarioMessages(scenario) {
       label: "Ask for Funding Data",
       direction: "request",
       note: `${scenario.integration.name} checks project and funding context.`,
-      requirements: ["SYS-6.1", "5.2.1"]
+      requirements: ["SYS-6.1", "SYS-5.2.1"]
     },
     {
       from: "enterprise",
@@ -236,7 +243,7 @@ function scenarioMessages(scenario) {
       label: "Return Funding Data",
       direction: "response",
       note: `${scenario.enterprise.name} returns funding context while inventory remains managed by the appropriate system.`,
-      requirements: ["SYS-6.1", "5.2.1", "5.3.1.1"]
+      requirements: ["SYS-6.1", "SYS-5.2.1", "SYS-5.3.1.1"]
     },
     {
       from: "integration",
@@ -244,7 +251,7 @@ function scenarioMessages(scenario) {
       label: "Ask for Existing Lab Data",
       direction: "request",
       note: "PEDYN remains connected so older lab history is not lost.",
-      requirements: ["3.3.4", "5.2.1"]
+      requirements: ["SYS-3.3.4", "SYS-5.2.1"]
     },
     {
       from: "pedyn",
@@ -252,7 +259,7 @@ function scenarioMessages(scenario) {
       label: "Existing Lab Data",
       direction: "response",
       note: "Older lab records are cleaned up before updating the future MES.",
-      requirements: ["3.3.4", "5.3.1.1"]
+      requirements: ["SYS-3.3.4", "SYS-5.3.1.1"]
     },
     {
       from: "integration",
@@ -260,7 +267,7 @@ function scenarioMessages(scenario) {
       label: "Create or Update Lab Record",
       direction: "request",
       note: `${scenario.integration.name} prepares business and lab history so ${scenario.mes.name} can use it.`,
-      requirements: ["SYS-6.3", "5.4.1.1", "3.3.4"]
+      requirements: ["SYS-6.3", "SYS-5.4.1.1", "SYS-3.3.4"]
     },
     {
       from: "mes",
@@ -276,7 +283,7 @@ function scenarioMessages(scenario) {
       label: "Record What Happened",
       direction: "request",
       note: "PICKS records the systems touched, user, time, and result.",
-      requirements: ["5.6.2.1", "SYS-6.5"]
+      requirements: ["SYS-5.6.2.1", "SYS-6.5"]
     }
   ];
 }

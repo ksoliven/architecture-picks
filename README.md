@@ -13,7 +13,7 @@ For the clearest walkthrough, review the site in the same order as the navigatio
 1. Background
 2. Requirements
 3. Interview Findings
-4. Current Flow
+4. Integration Flow
 5. Compare Options
 6. What-if
 7. System Layout
@@ -30,7 +30,7 @@ For the clearest walkthrough, review the site in the same order as the navigatio
 | `/background/` | Project context, problem background, and capstone scope |
 | `/requirements/` | Stakeholder needs, highlighted requirements, and prioritization drivers |
 | `/interview-findings/` | Discovery themes, pain points, and design implications |
-| `/baseline/` | Current Flow view showing how requests move across systems |
+| `/baseline/` | Integration Flow view showing how requests move across systems |
 | `/trade-study/` | Option comparison for ERP, MES, and integration-layer choices |
 | `/what-if/` | Scenario explorer for future architecture choices |
 | `/system-design/` | Clickable system layout based on the final diagrams |
@@ -79,7 +79,7 @@ The site is static and does not require a package install. It uses CDN-hosted fr
 | --- | --- |
 | Font Awesome | Navigation and interface icons |
 | AOS | Scroll animation effects |
-| Choices.js | Styled dropdowns on Current Flow, Compare Options, and What-if |
+| Choices.js | Styled dropdowns on Integration Flow, Compare Options, and What-if |
 
 ## Project Structure
 
