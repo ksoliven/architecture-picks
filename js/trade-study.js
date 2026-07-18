@@ -260,6 +260,14 @@ function optionRisks(study, option) {
     .slice(0, 3);
 }
 
+function shouldHighlightRating(study, criteria, rating) {
+  if (study.label === "ERP" && criteria === "Purchasing Support") {
+    return rating === "Very Strong";
+  }
+
+  return ratingScore(criteria, rating) >= 4;
+}
+
 function weightedCriteria(study, priorityKey) {
   const weights = priorityProfiles[priorityKey].weights;
   return study.criteria
@@ -350,8 +358,8 @@ function renderTradeStudy() {
           <tr>
             <td>${criteria}</td>
             ${study.options.map((option) => {
-              const score = ratingScore(criteria, option.ratings[index]);
-              return `<td class="${score >= 4 ? "score-high" : ""}">${option.ratings[index]}</td>`;
+              const rating = option.ratings[index];
+              return `<td class="${shouldHighlightRating(study, criteria, rating) ? "score-high" : ""}">${rating}</td>`;
             }).join("")}
           </tr>
         `).join("")}
