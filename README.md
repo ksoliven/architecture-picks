@@ -28,12 +28,12 @@ For the clearest walkthrough, review the site in the same order as the navigatio
 | --- | --- |
 | `/` | Overview and navigation hub |
 | `/background/` | Project context, problem background, and capstone scope |
-| `/requirements/` | Stakeholder needs, highlighted requirements, and prioritization drivers |
 | `/interview-findings/` | Discovery themes, pain points, and design implications |
-| `/baseline/` | Integration Flow view showing how requests move across systems |
-| `/trade-study/` | Option comparison for ERP, MES, and integration-layer choices |
-| `/what-if/` | Scenario explorer for future architecture choices |
+| `/requirements/` | Stakeholder needs, highlighted requirements, and prioritization drivers |
 | `/system-design/` | Clickable system layout based on the final diagrams |
+| `/trade-study/` | Option comparison for ERP, MES, and integration-layer choices |
+| `/baseline/` | Integration Flow view showing how requests move across systems |
+| `/what-if/` | Scenario explorer for future architecture choices |
 | `/data-payloads/` | Data Payloads reference with information exchange and error examples |
 | `/test-cases/` | Verification examples and test coverage |
 | `/final-recommendation/` | Recommended architecture path, dependencies, and phased next steps |
@@ -87,12 +87,12 @@ The site is static and does not require a package install. It uses CDN-hosted fr
 .
 ├── index.html
 ├── background/
-├── requirements/
 ├── interview-findings/
-├── baseline/
-├── trade-study/
-├── what-if/
+├── requirements/
 ├── system-design/
+├── trade-study/
+├── baseline/
+├── what-if/
 ├── data-payloads/
 ├── test-cases/
 ├── final-recommendation/
