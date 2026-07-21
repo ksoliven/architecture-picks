@@ -4281,11 +4281,13 @@ select:focus {
 }
 
 .step-picker-button {
-  display: flex;
+  position: relative;
+  display: block;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   width: 100%;
+  box-sizing: border-box;
   min-height: 42px;
   border: 1px solid color-mix(in srgb, var(--line) 72%, #ffffff);
   border-radius: 8px;
@@ -4296,25 +4298,26 @@ select:focus {
   cursor: pointer;
   font: inherit;
   font-weight: 750;
-  padding: 0 13px;
+  padding: 0 50px 0 13px;
   text-align: left;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 2px rgba(15, 23, 42, 0.05);
 }
 
 .step-picker-button::after {
+  position: absolute;
+  top: 50%;
+  right: 18px;
   width: 8px;
   height: 8px;
-  margin-right: 5px;
   border-right: 2px solid var(--strong-line);
   border-bottom: 2px solid var(--strong-line);
   content: "";
-  flex: 0 0 auto;
-  transform: rotate(45deg) translateY(-2px);
+  transform: translateY(-65%) rotate(45deg);
   transition: transform 180ms ease;
 }
 
 .step-picker.open .step-picker-button::after {
-  transform: rotate(225deg) translate(-2px, -1px);
+  transform: translateY(-35%) rotate(225deg);
 }
 
 .step-picker-button:hover,
@@ -4325,7 +4328,9 @@ select:focus {
 }
 
 .step-picker-button span {
+  display: block;
   min-width: 0;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -5189,6 +5194,11 @@ select:focus {
   }
 
   .filter-control {
+    min-width: 0;
+  }
+
+  .step-picker {
+    width: 100%;
     min-width: 0;
   }
 

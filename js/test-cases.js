@@ -56,10 +56,10 @@ const testCases = [
     status: "Detailed"
   },
   {
-    title: "Verify duplicate record detection",
-    category: "Errors",
-    icon: "fa-copy",
-    purpose: "Confirm that duplicate part, vendor, or inventory records are detected before they create downstream confusion.",
+    title: "Verify record retention",
+    category: "Traceability",
+    icon: "fa-box-archive",
+    purpose: "Confirm that required inventory, build, interface, and audit records remain available for future reference and compliance review.",
     status: "Planned"
   },
   {
@@ -130,14 +130,12 @@ const detailedTests = [
 ];
 
 const refinementSteps = [
-  { icon: "fa-bullseye", text: "Current test coverage verifies 128 requirements and leaves 15 requirements dependent on selected-system detail." },
-  { icon: "fa-border-all", text: "System boundaries remain ERP, MES, PEDYN, RBAC, and the Integration Layer." },
-  { icon: "fa-list-check", text: "Each executable test needs clear preconditions, inputs, expected outputs, and pass/fail criteria." },
-  { icon: "fa-database", text: "Representative data should include PO numbers, part numbers, BOMs, quantities, locations, and user roles." },
-  { icon: "fa-code-branch", text: "Failure coverage should distinguish data errors, interface failures, authorization failures, and workflow failures." },
-  { icon: "fa-hourglass-half", text: "Interface readiness and compliance artifact verification should wait for selected systems and data mappings." },
-  { icon: "fa-comments", text: "Final test flows should stay aligned with sponsor feedback and the ERP/MES architecture direction." },
-  { icon: "fa-link", text: "Traceability should remain visible from each test case back to the stakeholder need it verifies." }
+  { icon: "fa-cubes", text: "Use the MSOSA model for requirement traceability, system relationships, and model-level verification context." },
+  { icon: "fa-file-lines", text: "Use the SEMP report for supporting rationale, requirements discussion, architecture context, and verification planning detail." },
+  { icon: "fa-file-powerpoint", text: "Use the final PowerPoint deck as the presentation-level summary of the test set and sponsor-facing decisions." },
+  { icon: "fa-bullseye", text: "The site intentionally stays at overview level so the next cohort can start quickly without treating this page as the full test procedure." },
+  { icon: "fa-hourglass-half", text: "Interface readiness and compliance artifact verification should wait for selected systems, APIs, and data mappings." },
+  { icon: "fa-link", text: "Future detailed tests should preserve traceability from test case to stakeholder need, system requirement, and architecture element." }
 ];
 
 const testCaseGrid = document.querySelector("#testCaseGrid");
